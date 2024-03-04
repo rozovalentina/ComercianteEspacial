@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Equipo</title>
+</head>
+<body>
+    <h1>Formulario de Equipo</h1>
+    <form th:action="@{/equipos}" th:object="${equipo}" method="post">
+        <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
+        <p>Dinero: <input type="text" th:field="*{dinero}"/></p>
+        <p><input type="submit" value="Guardar"/></p>
+    </form>
+    <a href="/equipos">Cancelar</a>
+</body>
+</html>

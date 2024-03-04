@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Nuevo Tipo de Nave</title>
+</head>
+<body>
+    <h1>Formulario de Nuevo Tipo de Nave</h1>
+    <form action="/tiposnave/nuevo" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="descripcion">Descripción:</label>
+        <input type="text" id="descripcion" name="descripcion" required><br>
+        <button type="submit">Guardar Tipo de Nave</button>
+    </form>
+</body>
+</html>

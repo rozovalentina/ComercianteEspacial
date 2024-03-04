@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle de Estrella</title>
+</head>
+<body>
+    <h1>Detalle de Estrella</h1>
+    <p>Nombre: <span th:text="${estrella.nombre}"></span></p>
+    <p>Habitada: <span th:text="${estrella.habitada}"></span></p>
+    <p>Coordenadas: <span th:text="${estrella.coordenadas}"></span></p>
+    <!-- Agrega aquí más detalles de la estrella si es necesario -->
+    <a href="/estrellas">Volver a la Lista de Estrellas</a>
+</body>
+</html>

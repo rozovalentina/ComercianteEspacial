@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles del Planeta</title>
+</head>
+<body>
+    <h1>Detalles del Planeta</h1>
+    <p>ID: <span th:text="${planeta.id}"></span></p>
+    <p>Nombre: <span th:text="${planeta.nombre}"></span></p>
+    <a href="/planetas">Volver a la Lista de Planetas</a>
+</body>
+</html>

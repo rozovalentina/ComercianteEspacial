@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Planetas</title>
+</head>
+<body>
+    <h1>Lista de Planetas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="planeta : ${planetas}">
+                <td th:text="${planeta.id}"></td>
+                <td th:text="${planeta.nombre}"></td>
+                <td>
+                    <a th:href="@{/planetas/{id}(id=${planeta.id})}">Detalles</a>
+                    <a th:href="@{/planetas/{id}/editar(id=${planeta.id})}">Editar</a>
+                    <form th:action="@{/planetas/{id}/eliminar(id=${planeta.id})}" method="post">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/planetas/nuevo">Crear Nuevo Planeta</a>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Factor de Demanda</th>
+                <th>Factor de Oferta</th>
+                <th>Volumen por Unidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.id}"></td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.factorDemanda}"></td>
+                <td th:text="${producto.factorOferta}"></td>
+                <td th:text="${producto.volumenUnidad}"></td>
+                <td>
+                    <a th:href="@{/productos/{id}(id=${producto.id})}">Detalles</a>
+                    <a th:href="@{/productos/{id}/editar(id=${producto.id})}">Editar</a>
+                    <form th:action="@{/productos/{id}/eliminar(id=${producto.id})}" method="post">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/productos/nuevo">Crear Nuevo Producto</a>
+</body>
+</html>

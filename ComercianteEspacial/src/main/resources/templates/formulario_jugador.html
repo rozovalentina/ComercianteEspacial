@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Jugador</title>
+</head>
+<body>
+    <h1>Formulario de Jugador</h1>
+    <form action="/jugadores/guardar" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <button type="submit">Guardar Jugador</button>
+    </form>
+</body>
+</html>

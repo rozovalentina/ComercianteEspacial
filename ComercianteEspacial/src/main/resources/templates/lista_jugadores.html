@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Jugadores</title>
+</head>
+<body>
+    <h2>Lista de Jugadores</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Equipo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí iteramos sobre la lista de jugadores -->
+            <tr th:each="jugador : ${jugadores}">
+                <td th:text="${jugador.id}"></td>
+                <td th:text="${jugador.nombre}"></td>
+                <td th:text="${jugador.equipo.nombre}"></td>
+                <td>
+                    <a th:href="@{/jugadores/editar/{id}(id=${jugador.id})}">Editar</a>
+                    <a th:href="@{/jugadores/eliminar/{id}(id=${jugador.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/jugadores/nuevo">Agregar Nuevo Jugador</a>
+</body>
+</html>

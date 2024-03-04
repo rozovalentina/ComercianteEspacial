@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Nuevo Planeta</title>
+</head>
+<body>
+    <h1>Formulario de Nuevo Planeta</h1>
+    <form action="/planetas/nuevo" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+        <button type="submit">Guardar Planeta</button>
+    </form>
+</body>
+</html>

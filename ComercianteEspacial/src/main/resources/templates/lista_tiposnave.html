@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Tipos de Nave</title>
+</head>
+<body>
+    <h1>Lista de Tipos de Nave</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="tiponave : ${tiposnave}">
+                <td th:text="${tiponave.id}"></td>
+                <td th:text="${tiponave.nombre}"></td>
+                <td th:text="${tiponave.descripcion}"></td>
+                <td>
+                    <a th:href="@{/tiposnave/{id}(id=${tiponave.id})}">Detalles</a>
+                    <a th:href="@{/tiposnave/{id}/editar(id=${tiponave.id})}">Editar</a>
+                    <form th:action="@{/tiposnave/{id}/eliminar(id=${tiponave.id})}" method="post">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/tiposnave/nuevo">Crear Nuevo Tipo de Nave</a>
+</body>
+</html>

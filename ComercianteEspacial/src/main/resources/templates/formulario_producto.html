@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Nuevo Producto</title>
+</head>
+<body>
+    <h1>Formulario de Nuevo Producto</h1>
+    <form action="/productos/nuevo" method="post">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required><br>
+        <label for="factorDemanda">Factor de Demanda:</label>
+        <input type="number" id="factorDemanda" name="factorDemanda" required><br>
+        <label for="factorOferta">Factor de Oferta:</label>
+        <input type="number" id="factorOferta" name="factorOferta" required><br>
+        <label for="volumenUnidad">Volumen por Unidad:</label>
+        <input type="number" id="volumenUnidad" name="volumenUnidad" required><br>
+        <button type="submit">Guardar Producto</button>
+    </form>
+</body>
+</html>

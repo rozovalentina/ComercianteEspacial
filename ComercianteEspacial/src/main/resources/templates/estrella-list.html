@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Estrellas</title>
+</head>
+<body>
+    <h1>Lista de Estrellas</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Habitada</th>
+                <th>Coordenadas</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="estrella : ${estrellas}">
+                <td th:text="${estrella.nombre}"></td>
+                <td th:text="${estrella.habitada}"></td>
+                <td th:text="${estrella.coordenadas}"></td>
+                <td>
+                    <a th:href="@{/estrellas/{id}(id=${estrella.id})}">Ver Detalles</a> |
+                    <a th:href="@{/estrellas/{id}/editar(id=${estrella.id})}">Editar</a> |
+                    <a th:href="@{/estrellas/{id}/eliminar(id=${estrella.id})}">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/estrellas/nuevo">Agregar Nueva Estrella</a>
+</body>
+</html>

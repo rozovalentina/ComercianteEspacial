@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Edición de Planeta</title>
+</head>
+<body>
+    <h1>Formulario de Edición de Planeta</h1>
+    <form th:action="@{/planetas/{id}/editar(id=${planeta.id})}" method="post">
+        <input type="hidden" th:name="_method" value="put">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" th:value="${planeta.nombre}" required>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    <a href="/planetas/{id}">Cancelar</a>
+</body>
+</html>

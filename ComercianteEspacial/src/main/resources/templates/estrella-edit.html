@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Estrella</title>
+</head>
+<body>
+    <h1>Editar Estrella</h1>
+    <form action="/estrellas/{id}/actualizar" method="post" th:object="${estrella}">
+        <input type="hidden" th:field="*{id}">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required><br>
+        <label>Habitada:</label>
+        <input type="checkbox" th:field="*{habitada}"><br>
+        <label>Coordenadas:</label>
+        <input type="text" th:field="*{coordenadas}" required><br>
+        <!-- Agrega aquí más campos para otras propiedades de la estrella si es necesario -->
+        <input type="submit" value="Actualizar">
+    </form>
+    <a href="/estrellas">Cancelar</a>
+</body>
+</html>
