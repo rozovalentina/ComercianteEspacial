@@ -25,8 +25,7 @@ public class EquipoController {
 
     @GetMapping("/{id}")
     public String getEquipoById(@PathVariable("id") Long id, Model model) {
-        Equipo equipo = equipoService.getEquipoById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de equipo no válido: " + id));
+        Equipo equipo = equipoService.getEquipoById(id);
         model.addAttribute("equipo", equipo);
         return "equipo-detalle";
     }
@@ -45,12 +44,16 @@ public class EquipoController {
 
     @GetMapping("/{id}/editar")
     public String showEditForm(@PathVariable("id") Long id, Model model) {
-        Equipo equipo = equipoService.getEquipoById(id)
-                .orElseThrow(() -> new IllegalArgumentException("ID de equipo no válido: " + id));
+        Equipo equipo = equipoService.getEquipoById(id);
         model.addAttribute("equipo", equipo);
-        return "equipo-formulario";
+        return "formulario_editar_equipo";
     }
-    
+        
+    @PostMapping("/{id}/actualizar")
+    public String actualizarEquipo(@PathVariable Long id, @ModelAttribute("equipo") Equipo equipo) {
+        equipoService.updateEquipo(id, equipo);
+        return "redirect:/equipos";
+    }
     @GetMapping("/{id}/eliminar")
     public String deleteEquipo(@PathVariable("id") Long id) {
         equipoService.deleteEquipo(id);

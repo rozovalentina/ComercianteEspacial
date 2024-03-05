@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.service;
 
 import com.proyecto.ComercianteEspacial.model.Equipo;
+import com.proyecto.ComercianteEspacial.model.Estrella;
 import com.proyecto.ComercianteEspacial.repository.EquipoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,10 @@ public class EquipoService {
         return equipoRepository.findAll();
     }
 
-    @SuppressWarnings("null")
-    public Optional<Equipo> getEquipoById(Long id) {
-        return equipoRepository.findById(id);
+    public Equipo getEquipoById(Long id) {
+        @SuppressWarnings("null")
+        Optional<Equipo> optionalEquipo = equipoRepository.findById(id);
+        return optionalEquipo.orElse(null);
     }
 
     @SuppressWarnings("null")
@@ -29,18 +31,13 @@ public class EquipoService {
         return equipoRepository.save(equipo);
     }
 
-    public Equipo updateEquipo(Long id, Equipo equipoDetails) {
+    public Equipo updateEquipo(Long id, Equipo equipo) {
         @SuppressWarnings("null")
-        Optional<Equipo> optionalEquipo = equipoRepository.findById(id);
-        if (optionalEquipo.isPresent()) {
-            Equipo equipo = optionalEquipo.get();
-            equipo.setNombre(equipoDetails.getNombre());
-            equipo.setDinero(equipoDetails.getDinero());
-            // Actualizar otras propiedades si es necesario
-            return equipoRepository.save(equipo);
-        } else {
-            throw new RuntimeException("Equipo no encontrado con el ID: " + id);
-        }
+        Equipo Eq = equipoRepository.findById(equipo.getId()).orElseThrow();
+        Eq.setId(id);
+        Eq.setNombre(equipo.getNombre());
+        Eq.setDinero(equipo.getDinero());
+        return equipoRepository.save(Eq);
     }
 
     @SuppressWarnings("null")

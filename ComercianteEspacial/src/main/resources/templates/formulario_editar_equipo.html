@@ -2,21 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario de Edición de Equipos</title>
+    <title>Editar Equipo</title>
 </head>
 <body>
-    <h1>Formulario de Edición de Equipo</h1>
-    <form th:action="@{/equipos/{id}/editar(id=${equipo.id})}" method="post">
-        <input type="hidden" th:name="_method" value="put">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre">
-        <br>
-        <input type="hidden" th:name="_method" value="put">
-        <label for="dinero">Dinero:</label>
-        <input type="number" id="dinero" name="dinero">
-        <br>
-        <button type="submit">Guardar Cambios</button>
+    <h1>Editar Equipo</h1>
+    <form action="/equipos/{id}/actualizar" method="post" th:action="@{'/equipos/' + ${equipos.id} + '/actualizar'}" th:object="${estrella}">
+        <input type="hidden" th:field="*{id}">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required><br>
+        <label>Dinero</label>
+        <input type="text" th:field="*{dinero}" required><br>
+        <!-- Agrega aquí más campos para otras propiedades de la estrella si es necesario -->
+        <input type="submit" value="Actualizar">
     </form>
-    <a href="/equipos/{id}">Cancelar</a>
+    <a href="/equipos">Cancelar</a>
 </body>
 </html>
