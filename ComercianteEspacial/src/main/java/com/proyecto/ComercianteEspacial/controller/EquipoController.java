@@ -16,7 +16,7 @@ public class EquipoController {
     @Autowired
     private EquipoService equipoService;
 
-    @GetMapping
+    @GetMapping("")
     public String getAllEquipos(Model model) {
         List<Equipo> equipos = equipoService.getAllEquipos();
         model.addAttribute("equipos", equipos);
