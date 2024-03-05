@@ -2,15 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario de Equipo</title>
+    <title>Detalles del Equipo</title>
 </head>
 <body>
-    <h1>Formulario de Equipo</h1>
-    <form th:action="@{/equipos}" th:object="${equipo}" method="post">
-        <p>Nombre: <input type="text" th:field="*{nombre}"/></p>
-        <p>Dinero: <input type="text" th:field="*{dinero}"/></p>
-        <p><input type="submit" value="Guardar"/></p>
-    </form>
-    <a href="/equipos">Cancelar</a>
+    <h1>Detalles del Equipo</h1>
+    <p>ID: <span th:text="${equipo.id}"></span></p>
+    <p>Nombre: <span th:text="${equipo.nombre}"></span></p>
+    <p>Dinero: <span th:text="${equipo.dinero}"></span></p>
+    <a href="/equipos">Volver a la Lista de Equipos</a>
 </body>
 </html>
