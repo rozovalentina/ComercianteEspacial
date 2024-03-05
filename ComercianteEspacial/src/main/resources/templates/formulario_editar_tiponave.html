@@ -6,10 +6,10 @@
 </head>
 <body>
     <h1>Formulario de Edición de Tipo de Nave</h1>
-    <form th:action="@{/tiposnave/{id}/editar(id=${tiponave.id})}" method="post">
+    <form th:action="@{/tiposnave/{id}/editar(id=${tipoNave.id})}" method="post">
         <input type="hidden" th:name="_method" value="put">
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" th:value="${tiponave.nombre}" required><br>
+        <input type="text" id="nombre" name="nombre" th:value="${tipoNave.nombre}" required><br>
         <button type="submit">Guardar Cambios</button>
     </form>
     <a href="/tiposnave/{id}">Cancelar</a>

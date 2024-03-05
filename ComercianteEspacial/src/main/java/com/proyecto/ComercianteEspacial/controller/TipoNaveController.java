@@ -33,7 +33,7 @@ public class TipoNaveController {
         return "redirect:/tiposnave";
     }
 
-        @GetMapping("/tiposnave/{id}")
+    @GetMapping("/tiposnave/{id}")
     public String mostrarDetallestiposnave(@PathVariable Long id, Model model) {
         TipoNave tipoNave = tipoNaveService.obtenerTipoNavePorId(id);
         model.addAttribute("tipoNave", tipoNave);
