@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.init;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import com.proyecto.ComercianteEspacial.model.*;
@@ -9,7 +10,7 @@ import com.proyecto.ComercianteEspacial.repository.*;
 import java.util.Random;
 
 @Component
-public class DBInitializer {
+public class DBInitializer implements CommandLineRunner{
 
     @Autowired
     private EstrellaRepository estrellaRepository;
@@ -28,7 +29,13 @@ public class DBInitializer {
     
     @Autowired
     private EquipoRepository equipoRepository;
-
+    @Override
+    public void run(String... args) throws Exception{
+        generarEstrellas();
+        generarJugadores();
+        generarTiposNaves();
+        generarEspecificacionesProductos();
+    }
     public void generarEstrellas() {
         Random random = new Random();
         int totalEstrellas = 40000;
