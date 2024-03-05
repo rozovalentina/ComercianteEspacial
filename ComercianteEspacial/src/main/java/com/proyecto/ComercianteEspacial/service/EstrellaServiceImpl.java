@@ -33,8 +33,15 @@ public class EstrellaServiceImpl implements EstrellaService {
 
     @Override
     public Estrella actualizarEstrella(Long id, Estrella estrella) {
-        estrella.setId(id);
-        return estrellaRepository.save(estrella);
+        Estrella es = estrellaRepository.findById(estrella.getId()).orElseThrow();
+        es.setId(id);
+        es.setCoordenadaX(estrella.getCoordenadaX());
+        es.setCoordenadaY(estrella.getCoordenadaY());
+        es.setCoordenadaX(estrella.getCoordenadaX());
+        es.setCoordenadaZ(estrella.getCoordenadaZ());
+        es.setHabitada(estrella.isHabitada());
+        es.setNombre(estrella.getNombre());
+        return estrellaRepository.save(es);
     }
 
     @SuppressWarnings("null")

@@ -49,7 +49,7 @@ public class EstrellaController {
         return "estrella-edit";
     }
 
-    @PutMapping("/{id}/actualizar")
+    @PostMapping("/{id}/actualizar")
     public String actualizarEstrella(@PathVariable Long id, @ModelAttribute("estrella") Estrella estrella) {
         estrellaService.actualizarEstrella(id, estrella);
         return "redirect:/estrellas";

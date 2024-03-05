@@ -6,7 +6,7 @@
 </head>
 <body>
     <h1>Editar Estrella</h1>
-    <form action="/estrellas/{id}/actualizar" method="post" th:object="${estrella}">
+    <form action="/estrellas/{id}/actualizar" method="post" th:action="@{'/estrellas/' + ${estrella.id} + '/actualizar'}" th:object="${estrella}">
         <input type="hidden" th:field="*{id}">
         <label>Nombre:</label>
         <input type="text" th:field="*{nombre}" required><br>
