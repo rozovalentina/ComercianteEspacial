@@ -12,7 +12,7 @@ public class TipoNave {
     
 
     public TipoNave(String string) {
-        //TODO Auto-generated constructor stub
+        this.nombre = string;
     }
 
     public TipoNave() {

@@ -35,6 +35,7 @@ public class DBInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        crearRol();
         generarEstrellas();
         generarJugadores();
         generarTiposNaves();
@@ -46,17 +47,16 @@ public class DBInitializer implements CommandLineRunner {
         int totalEstrellas = 40000;
         int totalPlanetas = totalEstrellas / 100; // 1% de estrellas con planetas
 
-        
-            for (int i = 0; i < totalEstrellas; i++) {
-                double coordenadaX = random.nextDouble() * 300;
-                double coordenadaY = random.nextDouble() * 300;
-                double coordenadaZ = random.nextDouble() * 300;
-                Estrella estrella = new Estrella();
-                estrella.setNombre("Estrella " + i);
-                estrella.setCoordenadaX(coordenadaX); // Utilizar coordenadaX aquí
-                estrella.setCoordenadaY(coordenadaY);
-                estrella.setCoordenadaZ(coordenadaZ);
-                estrellaRepository.save(estrella);
+        for (int i = 0; i < totalEstrellas; i++) {
+            double coordenadaX = random.nextDouble() * 300;
+            double coordenadaY = random.nextDouble() * 300;
+            double coordenadaZ = random.nextDouble() * 300;
+            Estrella estrella = new Estrella();
+            estrella.setNombre("Estrella " + i);
+            estrella.setCoordenadaX(coordenadaX); // Utilizar coordenadaX aquí
+            estrella.setCoordenadaY(coordenadaY);
+            estrella.setCoordenadaZ(coordenadaZ);
+            estrellaRepository.save(estrella);
 
             // Generar planetas para algunas estrellas
             if (i < totalPlanetas) {
@@ -77,7 +77,7 @@ public class DBInitializer implements CommandLineRunner {
         int jugadoresPorEquipo = 10;
 
         List<Rol> roles = RolRepository.findAll();
-        
+
         for (int i = 0; i < totalEquipos; i++) {
             Equipo equipo = new Equipo();
             equipo.setNombre("Equipo " + i);
@@ -90,19 +90,19 @@ public class DBInitializer implements CommandLineRunner {
                 jugador.setContraseña(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
                 jugador.setEquipo(equipo);
 
-               // Asignar un rol aleatorio al jugador
-            int randomIndex = new Random().nextInt(roles.size());
-            Rol rolAleatorio = roles.get(randomIndex);
-            jugador.setRol(rolAleatorio);
+                // Asignar un rol aleatorio al jugador
+                int randomIndex = new Random().nextInt(roles.size());
+                Rol rolAleatorio = roles.get(randomIndex);
+                jugador.setRol(rolAleatorio);
 
-            jugadorRepository.save(jugador);
+                jugadorRepository.save(jugador);
             }
         }
     }
 
     public void generarEspecificacionesProductos() {
         int totalEspecificaciones = 500;
-    
+
         for (int i = 0; i < totalEspecificaciones; i++) {
             Producto especificacion = new Producto("Producto " + i, Math.random());
             especificacion.setNombre(GeneradorNombresProductos.generarNombre());
@@ -114,47 +114,49 @@ public class DBInitializer implements CommandLineRunner {
             productoRepository.save(especificacion);
         }
     }
-    
+
     private double calcularPrecioVenta(Producto producto) {
         double stock = generarStock();
-    
+
         return producto.getFactorDemanda() / (1 + stock);
     }
-    
+
     private double calcularPrecioCompra(Producto producto) {
         double stock = generarStock();
-    
+
         return producto.getFactorOferta() / (1 + stock);
     }
-    
+
     private double generarFactorDemanda() {
         return Math.random() * 1000000;
     }
-    
+
     private double generarFactorOferta() {
         return Math.random() * 1000000;
     }
-    
+
     private double generarStock() {
         return Math.random() * 1000000;
     }
-    
+
     public class GeneradorNombresProductos {
-        private static final String[] palabras1 = {"Agua", "Hierro", "Comida", "Energía", "Oxígeno", "Metales", "Minerales", "Gas", "Tecnología", "Armas"};
-        private static final String[] palabras2 = {"Espacial", "Galáctico", "Estelar", "Planetario", "Interestelar", "Cosmos", "Universal", "Intergaláctico"};
-    
+        private static final String[] palabras1 = { "Agua", "Hierro", "Comida", "Energía", "Oxígeno", "Metales",
+                "Minerales", "Gas", "Tecnología", "Armas" };
+        private static final String[] palabras2 = { "Espacial", "Galáctico", "Estelar", "Planetario", "Interestelar",
+                "Cosmos", "Universal", "Intergaláctico" };
+
         public static String generarNombre() {
             Random rand = new Random();
             int index1 = rand.nextInt(palabras1.length);
             int index2 = rand.nextInt(palabras2.length);
-    
+
             return palabras1[index1] + " " + palabras2[index2];
         }
     }
 
     public void generarTiposNaves() {
         int totalTiposNaves = 20;
-    
+
         for (int i = 0; i < totalTiposNaves; i++) {
             String nombreNave = GeneradorNombresNaves.generarNombre();
             TipoNave tipoNave = new TipoNave(nombreNave);
@@ -163,56 +165,36 @@ public class DBInitializer implements CommandLineRunner {
     }
 
     public class GeneradorNombresNaves {
-        private static final String[] prefijos = {"Aurora", "Centella", "Fénix", "Estrella", "Galaxia", "Luna", "Nébula", "Orion", "Polaris", "Titan"};
-        private static final String[] sufijos = {"X", "Y", "Z", "Omega", "Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Zeta"};
-    
+        private static final String[] prefijos = { "Aurora", "Centella", "Fénix", "Estrella", "Galaxia", "Luna",
+                "Nébula", "Orion", "Polaris", "Titan" };
+        private static final String[] sufijos = { "X", "Y", "Z", "Omega", "Alfa", "Beta", "Gamma", "Delta", "Epsilon",
+                "Zeta" };
+
         public static String generarNombre() {
             Random rand = new Random();
             int indexPrefijo = rand.nextInt(prefijos.length);
             int indexSufijo = rand.nextInt(sufijos.length);
-    
+
             return prefijos[indexPrefijo] + " " + sufijos[indexSufijo];
         }
     }
 
-    // Métodos adicionales para generar datos simulados (contraseña aleatoria y rol aleatorio)
+    // aleatorio)
     private String generarContraseñaAleatoria() {
-        // Lógica para generar una contraseña aleatoria
-        return "contraseñaAleatoria"; // Cambia esto según tus necesidades
+        return "contraseñaAleatoria"; 
     }
 
-    @Component
-public class DataInitializer implements CommandLineRunner {
-
-    private final RolRepository rolRepository;
-
-    @Autowired
-    public DataInitializer(RolRepository rolRepository) {
-        this.rolRepository = rolRepository;
-    }
-
-    @Override
-    public void run(String... args) throws Exception {
-        // Crear los roles si no existen
-        if (rolRepository.findAll().isEmpty()) {
+    private void crearRol(){
+        if (RolRepository.findAll().isEmpty()) {
             Rol rol1 = new Rol();
             rol1.setNombreR("Piloto");
-            rolRepository.save(rol1);
-
+            RolRepository.save(rol1);
             Rol rol2 = new Rol();
             rol2.setNombreR("Comerciante");
-            rolRepository.save(rol2);
-
+            RolRepository.save(rol2);
             Rol rol3 = new Rol();
             rol3.setNombreR("Capitán");
-            rolRepository.save(rol3);
+            RolRepository.save(rol3);
         }
     }
 }
-
-
-
-
-}
-
- 
