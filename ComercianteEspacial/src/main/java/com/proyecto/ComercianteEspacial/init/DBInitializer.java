@@ -3,7 +3,6 @@ package com.proyecto.ComercianteEspacial.init;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import com.proyecto.ComercianteEspacial.model.*;
 import com.proyecto.ComercianteEspacial.repository.*;
 
@@ -91,12 +90,42 @@ public class DBInitializer implements CommandLineRunner {
 
     public void generarEspecificacionesProductos() {
         int totalEspecificaciones = 500;
-
+    
         for (int i = 0; i < totalEspecificaciones; i++) {
             Producto especificacion = new Producto("Producto " + i, Math.random());
+            especificacion.setFactorDemanda(generarFactorDemanda());
+            especificacion.setFactorOferta(generarFactorOferta());
+            especificacion.setVolumenUnidad(Math.random());
+            especificacion.setPrecioVenta(calcularPrecioVenta(especificacion));
+            especificacion.setPrecioCompra(calcularPrecioCompra(especificacion));
             productoRepository.save(especificacion);
         }
     }
+    
+    private double calcularPrecioVenta(Producto producto) {
+        double stock = generarStock();
+    
+        return producto.getFactorDemanda() / (1 + stock);
+    }
+    
+    private double calcularPrecioCompra(Producto producto) {
+        double stock = generarStock();
+    
+        return producto.getFactorOferta() / (1 + stock);
+    }
+    
+    private double generarFactorDemanda() {
+        return Math.random() * 1000000;
+    }
+    
+    private double generarFactorOferta() {
+        return Math.random() * 1000000;
+    }
+    
+    private double generarStock() {
+        return Math.random() * 1000000;
+    }
+    
 
     public void generarTiposNaves() {
         int totalTiposNaves = 20;

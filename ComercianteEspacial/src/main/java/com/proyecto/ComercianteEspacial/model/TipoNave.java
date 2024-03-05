@@ -9,7 +9,7 @@ public class TipoNave {
     private Long id;
 
     private String nombre;
-    private String descripcion;
+    
 
     public TipoNave(String string) {
         //TODO Auto-generated constructor stub
@@ -36,12 +36,6 @@ public class TipoNave {
         this.nombre = nombre;
     }
 
-    public String getDescripcion() {
-        return descripcion;
-    }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
 }
 

@@ -12,6 +12,8 @@ public class Producto {
     private Double factorDemanda;
     private Double factorOferta;
     private Double volumenUnidad;
+    private Double PrecioVenta;
+    private Double PrecioCompra;
 
     public Producto(String string, double random) {
         //TODO Auto-generated constructor stub
@@ -61,4 +63,22 @@ public class Producto {
     public void setVolumenUnidad(Double volumenUnidad) {
         this.volumenUnidad = volumenUnidad;
     }
+
+    public Double getPrecioVenta() {
+        return PrecioVenta;
+    }
+
+    public void setPrecioVenta(Double PrecioVenta) {
+        this.PrecioVenta = PrecioVenta;
+    }
+
+    public Double getPrecioCompra() {
+        return PrecioCompra;
+    }
+
+    public void setPrecioCompra(Double PrecioCompra) {
+        this.PrecioCompra = PrecioCompra;
+    }
+
+
 }
