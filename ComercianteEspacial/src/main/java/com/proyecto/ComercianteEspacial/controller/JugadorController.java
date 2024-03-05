@@ -14,7 +14,7 @@ public class JugadorController {
     @Autowired
     private JugadorService jugadorService;
 
-    @GetMapping("/lista")
+    @GetMapping("")
     public String mostrarListaJugadores(Model model) {
         model.addAttribute("jugadores", jugadorService.obtenerTodosLosJugadores());
         return "lista_jugadores";
@@ -29,7 +29,7 @@ public class JugadorController {
     @PostMapping("/guardar")
     public String guardarJugador(@ModelAttribute("jugador") Jugador jugador) {
         jugadorService.guardarJugador(jugador);
-        return "redirect:/jugadores/lista";
+        return "redirect:/jugadores";
     }
 
     @GetMapping("/editar/{id}")
@@ -42,6 +42,6 @@ public class JugadorController {
     @GetMapping("/eliminar/{id}")
     public String eliminarJugador(@PathVariable Long id) {
         jugadorService.eliminarJugadorPorId(id);
-        return "redirect:/jugadores/lista";
+        return "redirect:/jugadores";
     }
 }
