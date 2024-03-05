@@ -15,8 +15,11 @@
                 <th>Factor de Demanda</th>
                 <th>Factor de Oferta</th>
                 <th>Volumen por Unidad</th>
+                <th>Precio de Compra</th>
+                <th>Precio de Venta</th>
                 <th>Acciones</th>
             </tr>
+            
         </thead>
         <tbody>
             <tr th:each="producto : ${productos}">
@@ -25,6 +28,8 @@
                 <td th:text="${producto.factorDemanda}"></td>
                 <td th:text="${producto.factorOferta}"></td>
                 <td th:text="${producto.volumenUnidad}"></td>
+                <td th:text="${producto.PrecioCompra}"></td>
+                <td th:text="${producto.PrecioVenta}"></td>
                 <td>
                     <a th:href="@{/productos/{id}(id=${producto.id})}">Detalles</a>
                     <a th:href="@{/productos/{id}/editar(id=${producto.id})}">Editar</a>
