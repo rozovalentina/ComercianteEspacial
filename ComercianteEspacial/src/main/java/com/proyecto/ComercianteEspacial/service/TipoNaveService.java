@@ -17,14 +17,17 @@ public class TipoNaveService {
         return tipoNaveRepository.findAll();
     }
 
+    @SuppressWarnings("null")
     public TipoNave obtenerTipoNavePorId(Long id) {
         return tipoNaveRepository.findById(id).orElse(null);
     }
 
+    @SuppressWarnings("null")
     public TipoNave guardarTipoNave(TipoNave tipoNave) {
         return tipoNaveRepository.save(tipoNave);
     }
 
+    @SuppressWarnings("null")
     public void eliminarTipoNavePorId(Long id) {
         tipoNaveRepository.deleteById(id);
     }
