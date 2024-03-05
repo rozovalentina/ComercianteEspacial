@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 @RequestMapping("/jugadores")
@@ -36,7 +39,7 @@ public class JugadorController {
     public String mostrarFormularioEditarJugador(@PathVariable Long id, Model model) {
         Jugador jugador = jugadorService.obtenerJugadorPorId(id);
         model.addAttribute("jugador", jugador);
-        return "formulario_jugador";
+        return "jugador_edit";
     }
 
     @GetMapping("/eliminar/{id}")
@@ -44,4 +47,10 @@ public class JugadorController {
         jugadorService.eliminarJugadorPorId(id);
         return "redirect:/jugadores";
     }
+    @PostMapping("/actualizar/{id}")
+    public String actualizarJugadoString(@PathVariable Long id,@ModelAttribute("jugador") Jugador jugador) {
+        jugadorService.actualizarJugador(id,jugador);
+        return "redirect:/jugadores";
+    }
+    
 }

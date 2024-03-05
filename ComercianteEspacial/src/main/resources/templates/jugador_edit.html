@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Jugador</title>
+</head>
+<body>
+    <h1>Editar Jugador</h1>
+    <form action="/jugadores/editar/{id}" method="post" th:action="@{'/jugadores/actualizar/'+ ${jugador.id} }" th:object="${jugador}">
+        <input type="hidden" th:field="*{id}">
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required><br>
+        <label>contraseña:</label>
+        <input type="text" th:field="*{contraseña}"><br>
+        <label>rol:</label>
+        <input type="text" th:field="*{rol}" required><br>
+        <input type="submit" value="Actualizar">
+    </form>
+    <a href="/jugadores">Cancelar</a>
+</body>
+</html>

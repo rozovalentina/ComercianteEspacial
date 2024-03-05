@@ -28,5 +28,11 @@ public class JugadorService {
         jugadorRepository.deleteById(id);
     }
 
-    // Otros métodos según sea necesario, por ejemplo, métodos para actualizar o buscar jugadores por nombre, etc.
+    public Jugador actualizarJugador(Long id,Jugador jugador){
+        Jugador ju= jugadorRepository.findById(id).orElseThrow();
+        ju.setNombre(jugador.getNombre());
+        ju.setRol(jugador.getRol());
+        ju.setContraseña(jugador.getContraseña());
+        return jugadorRepository.save(ju);
+    }
 }
