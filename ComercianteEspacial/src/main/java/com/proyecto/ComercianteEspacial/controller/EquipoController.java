@@ -37,7 +37,7 @@ public class EquipoController {
         return "equipo-formulario";
     }
 
-    @PostMapping
+    @PostMapping("/guardar")
     public String saveEquipo(@ModelAttribute("equipo") Equipo equipo) {
         equipoService.saveEquipo(equipo);
         return "redirect:/equipos";

@@ -23,6 +23,9 @@ public class Equipo {
         //TODO Auto-generated constructor stub
     }
 
+    public Equipo() {
+        //TODO Auto-generated constructor stub
+    }
     // Getters y setters
     public Long getId() {
         return id;
