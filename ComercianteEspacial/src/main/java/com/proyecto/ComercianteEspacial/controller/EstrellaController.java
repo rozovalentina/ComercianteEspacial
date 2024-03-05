@@ -1,7 +1,9 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import com.proyecto.ComercianteEspacial.model.Estrella;
+import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.service.EstrellaService;
+import com.proyecto.ComercianteEspacial.service.PlanetaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ public class EstrellaController {
 
     @Autowired
     private EstrellaService estrellaService;
+    private PlanetaService planetaService;
 
     @GetMapping("")
     public String mostrarListaEstrellas(Model model) {
@@ -26,8 +29,10 @@ public class EstrellaController {
     @GetMapping("/{id}")
     public String mostrarDetalleEstrella(@PathVariable Long id, Model model) {
         Estrella estrella = estrellaService.obtenerEstrellaPorId(id);
-        model.addAttribute("estrella", estrella);
-        return "estrella-detail";
+        model.addAttribute("estrella", estrella); 
+     List<Planeta> planetas = estrellaService.obtenerTodoslosPlanetas(estrella);
+        model.addAttribute("planetas", planetas);
+           return "estrella-detail";
     }
 
     @GetMapping("/nuevo")

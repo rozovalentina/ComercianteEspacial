@@ -11,7 +11,12 @@
     <p>Coordenada X: <span th:text="${estrella.coordenadaX}"></span></p>
     <p>Coordenada Y: <span th:text="${estrella.coordenadaY}"></span></p>
     <p>Coordenada Z: <span th:text="${estrella.coordenadaZ}"></span></p>
-    <!-- Agrega aquí más detalles de la estrella si es necesario -->
+    <h2>Listado de Planetas</h2>
+    <ul>
+        <li th:each="planeta : ${planetas}">
+            <span th:text="${planeta.nombre}"></span>
+        </li>
+    </ul>    <!-- Agrega aquí más detalles de la estrella si es necesario -->
     <a href="/estrellas">Volver a la Lista de Estrellas</a>
 </body>
 </html>

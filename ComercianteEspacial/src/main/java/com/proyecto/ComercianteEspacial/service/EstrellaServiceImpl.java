@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.service;
 
 import com.proyecto.ComercianteEspacial.model.Estrella;
+import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.repository.EstrellaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,4 +50,11 @@ public class EstrellaServiceImpl implements EstrellaService {
     public void eliminarEstrella(Long id) {
         estrellaRepository.deleteById(id);
     }
+
+    public List<Planeta> obtenerTodoslosPlanetas( Estrella estrella) {
+        List<Planeta> pl = estrella.getPlanetas();
+        return pl; 
+    }
+
 }
+
