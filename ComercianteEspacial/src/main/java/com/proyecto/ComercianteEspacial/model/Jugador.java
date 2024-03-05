@@ -10,7 +10,11 @@ public class Jugador {
 
     private String nombre;
     private String contraseña;
-    private String rol; // Campo para almacenar el rol como una cadena
+    
+    @ManyToOne
+    @JoinColumn(name = "rol_id")
+    private Rol rol;
+
 
     @ManyToOne
     @JoinColumn(name = "equipo_id")
@@ -53,11 +57,11 @@ public class Jugador {
         this.contraseña = contraseña;
     }
 
-    public String getRol() {
+    public Rol getRol() {
         return rol;
     }
 
-    public void setRol(String rol) {
+    public void setRol(Rol rol) {
         this.rol = rol;
     }
 

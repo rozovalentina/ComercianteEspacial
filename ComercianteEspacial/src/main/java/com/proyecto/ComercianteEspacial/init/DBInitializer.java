@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 import com.proyecto.ComercianteEspacial.model.*;
 import com.proyecto.ComercianteEspacial.repository.*;
 
+import java.util.List;
 import java.util.Random;
 
 @Component
@@ -28,6 +29,9 @@ public class DBInitializer implements CommandLineRunner {
 
     @Autowired
     private EquipoRepository equipoRepository;
+
+    @Autowired
+    private RolRepository RolRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -72,6 +76,8 @@ public class DBInitializer implements CommandLineRunner {
         int totalEquipos = 10;
         int jugadoresPorEquipo = 10;
 
+        List<Rol> roles = RolRepository.findAll();
+        
         for (int i = 0; i < totalEquipos; i++) {
             Equipo equipo = new Equipo();
             equipo.setNombre("Equipo " + i);
@@ -83,7 +89,13 @@ public class DBInitializer implements CommandLineRunner {
                 jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
                 jugador.setContraseña(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
                 jugador.setEquipo(equipo);
-                jugadorRepository.save(jugador);
+
+               // Asignar un rol aleatorio al jugador
+            int randomIndex = new Random().nextInt(roles.size());
+            Rol rolAleatorio = roles.get(randomIndex);
+            jugador.setRol(rolAleatorio);
+
+            jugadorRepository.save(jugador);
             }
         }
     }
@@ -168,6 +180,39 @@ public class DBInitializer implements CommandLineRunner {
         // Lógica para generar una contraseña aleatoria
         return "contraseñaAleatoria"; // Cambia esto según tus necesidades
     }
+
+    @Component
+public class DataInitializer implements CommandLineRunner {
+
+    private final RolRepository rolRepository;
+
+    @Autowired
+    public DataInitializer(RolRepository rolRepository) {
+        this.rolRepository = rolRepository;
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        // Crear los roles si no existen
+        if (rolRepository.findAll().isEmpty()) {
+            Rol rol1 = new Rol();
+            rol1.setNombreR("Piloto");
+            rolRepository.save(rol1);
+
+            Rol rol2 = new Rol();
+            rol2.setNombreR("Comerciante");
+            rolRepository.save(rol2);
+
+            Rol rol3 = new Rol();
+            rol3.setNombreR("Capitán");
+            rolRepository.save(rol3);
+        }
+    }
+}
+
+
+
+
 }
 
  
