@@ -49,7 +49,6 @@ public class EquipoService {
     }
 
     public void saveEquipo(Equipo equipo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'saveEquipo'");
+        equipoRepository.save(equipo);
     }
 }
