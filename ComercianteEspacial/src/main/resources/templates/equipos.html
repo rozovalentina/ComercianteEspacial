@@ -22,8 +22,8 @@
                 <td th:text="${equipo.dinero}"></td>
                 <td>
                     <a th:href="@{/equipos/{id}(id=${equipo.id})}">Ver Detalles</a>
-                    <a th:href="@{/equipos/{id}/editar}(id=${equipo.id})}">Editar</a>
-                    <a th:href="@{/equipos/{id}/eliminar}(id=${equipo.id})}">Eliminar</a>
+                    <a th:href="@{/equipos/{id}/editar(id=${equipo.id})}">Editar</a>
+                    <a th:href="@{/equipos/{id}/eliminar(id=${equipo.id})}">Eliminar</a>
                 </td>
             </tr>
         </tbody>
