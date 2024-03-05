@@ -144,7 +144,8 @@ public class DBInitializer implements CommandLineRunner {
         int totalTiposNaves = 20;
     
         for (int i = 0; i < totalTiposNaves; i++) {
-            TipoNave tipoNave = new TipoNave(GeneradorNombresNaves.generarNombre());
+            String nombreNave = GeneradorNombresNaves.generarNombre();
+            TipoNave tipoNave = new TipoNave(nombreNave);
             tipoNaveRepository.save(tipoNave);
         }
     }
