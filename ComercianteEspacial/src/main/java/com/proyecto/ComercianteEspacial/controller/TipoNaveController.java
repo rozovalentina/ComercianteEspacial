@@ -26,7 +26,7 @@ public class TipoNaveController {
     }
 
     @PostMapping("/tiposnave/nuevo")
-    public String guardarTipoNave(@RequestParam String nombre, @RequestParam String descripcion) {
+    public String guardarTipoNave(@RequestParam String nombre) {
         TipoNave tipoNave = new TipoNave();
         tipoNave.setNombre(nombre);
         tipoNaveService.guardarTipoNave(tipoNave);
