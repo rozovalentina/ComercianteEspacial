@@ -93,6 +93,7 @@ public class DBInitializer implements CommandLineRunner {
     
         for (int i = 0; i < totalEspecificaciones; i++) {
             Producto especificacion = new Producto("Producto " + i, Math.random());
+            especificacion.setNombre(GeneradorNombresProductos.generarNombre());
             especificacion.setFactorDemanda(generarFactorDemanda());
             especificacion.setFactorOferta(generarFactorOferta());
             especificacion.setVolumenUnidad(Math.random());
@@ -126,13 +127,38 @@ public class DBInitializer implements CommandLineRunner {
         return Math.random() * 1000000;
     }
     
+    public class GeneradorNombresProductos {
+        private static final String[] palabras1 = {"Agua", "Hierro", "Comida", "Energía", "Oxígeno", "Metales", "Minerales", "Gas", "Tecnología", "Armas"};
+        private static final String[] palabras2 = {"Espacial", "Galáctico", "Estelar", "Planetario", "Interestelar", "Cosmos", "Universal", "Intergaláctico"};
+    
+        public static String generarNombre() {
+            Random rand = new Random();
+            int index1 = rand.nextInt(palabras1.length);
+            int index2 = rand.nextInt(palabras2.length);
+    
+            return palabras1[index1] + " " + palabras2[index2];
+        }
+    }
 
     public void generarTiposNaves() {
         int totalTiposNaves = 20;
-
+    
         for (int i = 0; i < totalTiposNaves; i++) {
-            TipoNave tipoNave = new TipoNave("Tipo de Nave " + i);
+            TipoNave tipoNave = new TipoNave(GeneradorNombresNaves.generarNombre());
             tipoNaveRepository.save(tipoNave);
+        }
+    }
+
+    public class GeneradorNombresNaves {
+        private static final String[] prefijos = {"Aurora", "Centella", "Fénix", "Estrella", "Galaxia", "Luna", "Nébula", "Orion", "Polaris", "Titan"};
+        private static final String[] sufijos = {"X", "Y", "Z", "Omega", "Alfa", "Beta", "Gamma", "Delta", "Epsilon", "Zeta"};
+    
+        public static String generarNombre() {
+            Random rand = new Random();
+            int indexPrefijo = rand.nextInt(prefijos.length);
+            int indexSufijo = rand.nextInt(sufijos.length);
+    
+            return prefijos[indexPrefijo] + " " + sufijos[indexSufijo];
         }
     }
 
