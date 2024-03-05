@@ -7,12 +7,14 @@
 <body>
     <h2>Lista de Jugadores</h2>
     <a href="/jugadores/nuevo">Agregar Nuevo Jugador</a>
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Equipo</th>
+                <th>Contraseña<ol/th>
+                <th>Rol</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -22,6 +24,8 @@
                 <td th:text="${jugador.id}"></td>
                 <td th:text="${jugador.nombre}"></td>
                 <td th:text="${jugador.equipo.nombre}"></td>
+                <td th:text="${jugador.contraseña}"></td>
+                <td th:text="${jugador.rol.nombreR}"></td>
                 <td>
                     <a th:href="@{/jugadores/editar/{id}(id=${jugador.id})}">Editar</a>
                     <a th:href="@{/jugadores/eliminar/{id}(id=${jugador.id})}">Eliminar</a>

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.proyecto.ComercianteEspacial.model.Producto;
 import com.proyecto.ComercianteEspacial.model.TipoNave;
 import com.proyecto.ComercianteEspacial.service.TipoNaveService;
 
