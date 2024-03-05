@@ -16,6 +16,10 @@
         <input type="number" id="factorOferta" name="factorOferta" th:value="${producto.factorOferta}" required><br>
         <label for="volumenUnidad">Volumen por Unidad:</label>
         <input type="number" id="volumenUnidad" name="volumenUnidad" th:value="${producto.volumenUnidad}" required><br>
+        <label for="factorOferta">Precio de Compra:</label>
+        <input type="number" id="PrecioCompra" name="PrecioCompra" th:value="${producto.PrecioCompra}" required><br>
+        <label for="volumenUnidad">Precio de Venta:</label>
+        <input type="number" id="PrecioVenta" name="PrecioVenta" th:value="${producto.PrecioVenta}" required><br>
         <button type="submit">Guardar Cambios</button>
     </form>
     <a href="/productos/{id}">Cancelar</a>
