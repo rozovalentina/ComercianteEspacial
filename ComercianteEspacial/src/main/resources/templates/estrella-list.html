@@ -12,7 +12,9 @@
             <tr>
                 <th>Nombre</th>
                 <th>Habitada</th>
-                <th>Coordenadas</th>
+                <th>Coordenada X</th>
+                <th>Coordenada Y</th>
+                <th>Coordenada Z</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -20,7 +22,9 @@
             <tr th:each="estrella : ${estrellas}">
                 <td th:text="${estrella.nombre}"></td>
                 <td th:text="${estrella.habitada}"></td>
-                <td th:text="${estrella.coordenadas}"></td>
+                <td th:text="${estrella.coordenadaX}"></td>
+                <td th:text="${estrella.coordenadaY}"></td>
+                <td th:text="${estrella.coordenadaZ}"></td>
                 <td>
                     <a th:href="@{/estrellas/{id}(id=${estrella.id})}">Ver Detalles</a> |
                     <a th:href="@{/estrellas/{id}/editar(id=${estrella.id})}">Editar</a> |
