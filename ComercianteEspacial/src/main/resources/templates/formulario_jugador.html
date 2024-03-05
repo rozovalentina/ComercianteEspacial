@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Jugador</title>
 </head>
+
 <body>
     <h1>Formulario de Jugador</h1>
-    <form action="/jugadores/guardar" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-        <label for="nombre">Contraseña:</label>
-        <input type="text" id="contraseña" name="contraseña" required>
-        <label for="nombre">Rol:</label>
-        <input type="text" id="rol" name="rol" required>
-        <button type="submit">Guardar Jugador</button>
-    </form>
+    <!-- Accedemos al primer equipo de la lista equipos -->
+    <div th:with="primerEquipo=${equipos[0]}">
+        <form action="/jugadores/guardar/{idEquipo}" method="post" th:action="@{'guardar/'+ ${primerEquipo.id}}" th:object="${jugador}">
+            <label for="nombre">Nombre:</label>
+            <input type="text" th:field="*{nombre}" id="nombre" name="nombre" required>
+            <label for="nombre">Contraseña:</label>
+            <input type="text" th:field="*{contraseña}" id="contraseña" name="contraseña" required>
+            <label for="nombre">Rol:</label>
+            <input type="text" id="rol" th:field="*{rol}" name="rol" required>
+            <label for="equipo">Equipo:</label>
+            <select id="equipo" name="equipo">
+                <option th:each="equipo : ${equipos}" th:value="${equipo.id}" th:text="${equipo.nombre}"></option>
+            </select>
+            <button type="submit">Guardar Jugador</button>
+        </form>
+    </div>
 </body>
+
 </html>

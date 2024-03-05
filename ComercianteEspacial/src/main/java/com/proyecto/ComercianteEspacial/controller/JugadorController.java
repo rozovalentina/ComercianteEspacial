@@ -1,6 +1,8 @@
 package com.proyecto.ComercianteEspacial.controller;
 
+import com.proyecto.ComercianteEspacial.model.Equipo;
 import com.proyecto.ComercianteEspacial.model.Jugador;
+import com.proyecto.ComercianteEspacial.service.EquipoService;
 import com.proyecto.ComercianteEspacial.service.JugadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,8 @@ public class JugadorController {
 
     @Autowired
     private JugadorService jugadorService;
-
+    @Autowired
+    private EquipoService equipoService;
     @GetMapping("")
     public String mostrarListaJugadores(Model model) {
         model.addAttribute("jugadores", jugadorService.obtenerTodosLosJugadores());
@@ -24,12 +27,15 @@ public class JugadorController {
 
     @GetMapping("/nuevo")
     public String mostrarFormularioNuevoJugador(Model model) {
+        model.addAttribute("equipos", equipoService.getAllEquipos());
         model.addAttribute("jugador", new Jugador());
         return "formulario_jugador";
     }
 
-    @PostMapping("/guardar")
-    public String guardarJugador(@ModelAttribute("jugador") Jugador jugador) {
+    @PostMapping("/guardar/{idEquipo}")
+    public String guardarJugador(@ModelAttribute("jugador") Jugador jugador,@PathVariable Long idEquipo) {
+        Equipo eq= equipoService.getEquipoById(idEquipo);
+        jugador.setEquipo(eq);
         jugadorService.guardarJugador(jugador);
         return "redirect:/jugadores";
     }
