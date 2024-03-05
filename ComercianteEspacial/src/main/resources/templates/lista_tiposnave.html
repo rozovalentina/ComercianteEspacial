@@ -12,7 +12,6 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Descripción</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -20,7 +19,6 @@
             <tr th:each="tiponave : ${tiposnave}">
                 <td th:text="${tiponave.id}"></td>
                 <td th:text="${tiponave.nombre}"></td>
-                <td th:text="${tiponave.descripcion}"></td>
                 <td>
                     <a th:href="@{/tiposnave/{id}(id=${tiponave.id})}">Detalles</a>
                     <a th:href="@{/tiposnave/{id}/editar(id=${tiponave.id})}">Editar</a>

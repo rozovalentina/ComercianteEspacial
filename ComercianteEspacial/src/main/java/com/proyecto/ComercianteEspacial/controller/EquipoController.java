@@ -50,7 +50,7 @@ public class EquipoController {
         model.addAttribute("equipo", equipo);
         return "equipo-formulario";
     }
-
+    
     @GetMapping("/{id}/eliminar")
     public String deleteEquipo(@PathVariable("id") Long id) {
         equipoService.deleteEquipo(id);

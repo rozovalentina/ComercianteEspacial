@@ -28,7 +28,6 @@ public class TipoNaveController {
     public String guardarTipoNave(@RequestParam String nombre, @RequestParam String descripcion) {
         TipoNave tipoNave = new TipoNave();
         tipoNave.setNombre(nombre);
-        tipoNave.setDescripcion(descripcion);
         tipoNaveService.guardarTipoNave(tipoNave);
         return "redirect:/tiposnave";
     }

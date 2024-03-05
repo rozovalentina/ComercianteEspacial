@@ -10,8 +10,6 @@
         <input type="hidden" th:name="_method" value="put">
         <label for="nombre">Nombre:</label>
         <input type="text" id="nombre" name="nombre" th:value="${tiponave.nombre}" required><br>
-        <label for="descripcion">Descripción:</label>
-        <input type="text" id="descripcion" name="descripcion" th:value="${tiponave.descripcion}" required><br>
         <button type="submit">Guardar Cambios</button>
     </form>
     <a href="/tiposnave/{id}">Cancelar</a>
