@@ -10,7 +10,7 @@ import com.proyecto.ComercianteEspacial.repository.*;
 import java.util.Random;
 
 @Component
-public class DBInitializer implements CommandLineRunner{
+public class DBInitializer implements CommandLineRunner {
 
     @Autowired
     private EstrellaRepository estrellaRepository;
@@ -25,30 +25,35 @@ public class DBInitializer implements CommandLineRunner{
     private ProductoRepository productoRepository;
 
     @Autowired
-    private TipoNaveRepository tipoNaveRepository;    
-    
+    private TipoNaveRepository tipoNaveRepository;
+
     @Autowired
     private EquipoRepository equipoRepository;
+
     @Override
-    public void run(String... args) throws Exception{
+    public void run(String... args) throws Exception {
         generarEstrellas();
         generarJugadores();
         generarTiposNaves();
         generarEspecificacionesProductos();
     }
+
     public void generarEstrellas() {
         Random random = new Random();
         int totalEstrellas = 40000;
         int totalPlanetas = totalEstrellas / 100; // 1% de estrellas con planetas
 
-        for (int i = 0; i < totalEstrellas; i++) {
-            double coordenadaX = random.nextDouble() * 300;
-            double coordenadaY = random.nextDouble() * 300;
-            double coordenadaZ = random.nextDouble() * 300;
-            Estrella estrella = new Estrella();
-            estrella.setNombre("Estrella " + i);
-            // Configurar otras propiedades de la estrella si es necesario
-            estrellaRepository.save(estrella);
+        
+            for (int i = 0; i < totalEstrellas; i++) {
+                double coordenadaX = random.nextDouble() * 300;
+                double coordenadaY = random.nextDouble() * 300;
+                double coordenadaZ = random.nextDouble() * 300;
+                Estrella estrella = new Estrella();
+                estrella.setNombre("Estrella " + i);
+                estrella.setCoordenadaX(coordenadaX); // Utilizar coordenadaX aquí
+                estrella.setCoordenadaY(coordenadaY);
+                estrella.setCoordenadaZ(coordenadaZ);
+                estrellaRepository.save(estrella);
 
             // Generar planetas para algunas estrellas
             if (i < totalPlanetas) {
@@ -69,11 +74,15 @@ public class DBInitializer implements CommandLineRunner{
         int jugadoresPorEquipo = 10;
 
         for (int i = 0; i < totalEquipos; i++) {
-            Equipo equipo = new Equipo("Equipo " + i);
+            Equipo equipo = new Equipo();
+            equipo.setNombre("Equipo " + i);
+            equipo.setDinero(1000.0); // Establecer una cantidad inicial de dinero
             equipoRepository.save(equipo);
 
             for (int j = 0; j < jugadoresPorEquipo; j++) {
-                Jugador jugador = new Jugador("Jugador " + (i * jugadoresPorEquipo + j), equipo);
+                Jugador jugador = new Jugador();
+                jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
+                jugador.setContraseña(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
                 jugador.setEquipo(equipo);
                 jugadorRepository.save(jugador);
             }
@@ -97,4 +106,12 @@ public class DBInitializer implements CommandLineRunner{
             tipoNaveRepository.save(tipoNave);
         }
     }
+
+    // Métodos adicionales para generar datos simulados (contraseña aleatoria y rol aleatorio)
+    private String generarContraseñaAleatoria() {
+        // Lógica para generar una contraseña aleatoria
+        return "contraseñaAleatoria"; // Cambia esto según tus necesidades
+    }
 }
+
+ 

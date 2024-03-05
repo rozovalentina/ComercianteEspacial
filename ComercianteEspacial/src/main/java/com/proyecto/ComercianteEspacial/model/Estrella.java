@@ -1,16 +1,20 @@
 package com.proyecto.ComercianteEspacial.model;
+
 import jakarta.persistence.*;
 import java.util.List;
+
 @Entity
 public class Estrella {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String nombre;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Punto3D coordenadas;
+    private Double coordenadaX;
+    private Double coordenadaY;
+    private Double coordenadaZ;
 
     private boolean habitada;
 
@@ -34,12 +38,28 @@ public class Estrella {
         this.nombre = nombre;
     }
 
-    public Punto3D getCoordenadas() {
-        return coordenadas;
+    public Double getCoordenadaX() {
+        return coordenadaX;
     }
 
-    public void setCoordenadas(Punto3D coordenadas) {
-        this.coordenadas = coordenadas;
+    public void setCoordenadaX(Double coordenadaX) {
+        this.coordenadaX = coordenadaX;
+    }
+
+    public Double getCoordenadaY() {
+        return coordenadaY;
+    }
+
+    public void setCoordenadaY(Double coordenadaY) {
+        this.coordenadaY = coordenadaY;
+    }
+
+    public Double getCoordenadaZ() {
+        return coordenadaZ;
+    }
+
+    public void setCoordenadaZ(Double coordenadaZ) {
+        this.coordenadaZ = coordenadaZ;
     }
 
     public boolean isHabitada() {
@@ -58,3 +78,4 @@ public class Estrella {
         this.planetas = planetas;
     }
 }
+
