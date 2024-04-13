@@ -15,6 +15,10 @@ public class Jugador {
     @JoinColumn(name = "rol_id")
     private Rol rol;
 
+    @OneToOne
+    @JoinColumn(name = "nave_id")
+    private Nave nave;
+
 
     @ManyToOne
     @JoinColumn(name = "equipo_id")
@@ -63,6 +67,14 @@ public class Jugador {
 
     public void setRol(Rol rol) {
         this.rol = rol;
+    }
+
+    public Nave getNave() {
+        return nave;
+    }
+
+    public void setNave(Nave nave) {
+        this.nave = nave;
     }
 
     public Equipo getEquipo() {

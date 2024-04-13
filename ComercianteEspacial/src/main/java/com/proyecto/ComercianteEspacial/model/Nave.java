@@ -11,6 +11,9 @@ public class Nave {
     private String nombre;
     private Double cargaMaxima;
     private Double velocidadMaxima;
+    private Double naveX;
+    private Double naveY;
+    private Double naveZ;
 
     @ManyToOne
     @JoinColumn(name = "tipo_nave_id")
@@ -52,6 +55,31 @@ public class Nave {
         this.velocidadMaxima = velocidadMaxima;
     }
 
+    public Double getnaveX() {
+        return naveX;
+    }
+
+    public void setnaveX(Double naveX) {
+        this.naveX = naveX;
+    }
+
+    public Double getnaveY() {
+        return naveY;
+    }
+
+    public void setCoordenadaY(Double naveY) {
+        this.naveY = naveY;
+    }
+
+    public Double getnaveZ() {
+        return naveZ;
+    }
+
+    public void setCoordenadaZ(Double naveZ) {
+        this.naveZ = naveZ;
+    }
+
+
     public TipoNave getTipoNave() {
         return tipoNave;
     }
@@ -59,6 +87,9 @@ public class Nave {
     public void setTipoNave(TipoNave tipoNave) {
         this.tipoNave = tipoNave;
     }
+
+
+
 }
 
 
