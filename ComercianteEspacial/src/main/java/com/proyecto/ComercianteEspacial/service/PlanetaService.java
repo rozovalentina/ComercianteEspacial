@@ -4,7 +4,9 @@ import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.repository.PlanetaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlanetaService {
@@ -27,6 +29,4 @@ public class PlanetaService {
     public void eliminarPlanetaPorId(Long id) {
         planetaRepository.deleteById(id);
     }
-
-    // Otros métodos según sea necesario, por ejemplo, métodos para buscar planetas por nombre, actualizar planetas, etc.
 }

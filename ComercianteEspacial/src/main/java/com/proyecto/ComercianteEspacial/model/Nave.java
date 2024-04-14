@@ -86,35 +86,6 @@ public class Nave {
 
     public void setTipoNave(TipoNave tipoNave) {
         this.tipoNave = tipoNave;
-    }
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }  
+    
+  }

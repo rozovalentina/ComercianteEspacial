@@ -11,6 +11,5 @@ public interface EstrellaService {
     Estrella guardarEstrella(Estrella estrella);
     Estrella actualizarEstrella(Long id, Estrella estrella);
     void eliminarEstrella(Long id);
-    List<Planeta> obtenerTodoslosPlanetas(Estrella estrella );
-
+    List<Planeta> obtenerTodosLosPlanetas(Long idEstrella);
 }

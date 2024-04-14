@@ -4,7 +4,9 @@ import com.proyecto.ComercianteEspacial.model.Jugador;
 import com.proyecto.ComercianteEspacial.repository.JugadorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JugadorService {
@@ -28,11 +30,22 @@ public class JugadorService {
         jugadorRepository.deleteById(id);
     }
 
-    public Jugador actualizarJugador(Long id,Jugador jugador){
-        Jugador ju= jugadorRepository.findById(id).orElseThrow();
-        ju.setNombre(jugador.getNombre());
-        ju.setRol(jugador.getRol());
-        ju.setContraseña(jugador.getContraseña());
-        return jugadorRepository.save(ju);
+    public Jugador actualizarJugador(Long id, Jugador jugador) {
+        Jugador ju = jugadorRepository.findById(id).orElse(null);
+        if (ju != null) {
+            ju.setNombre(jugador.getNombre());
+            ju.setRol(jugador.getRol());
+            ju.setContraseña(jugador.getContraseña());
+            return jugadorRepository.save(ju);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean authenticate(String nombre, String contraseña) {
+        // Buscar el jugador por nombre de usuario en la base de datos
+        Jugador jugador = jugadorRepository.findByNombre(nombre);
+        // Verificar si se encontró un jugador y si la contraseña coincide
+        return jugador != null && jugador.getContraseña().equals(contraseña);
     }
 }

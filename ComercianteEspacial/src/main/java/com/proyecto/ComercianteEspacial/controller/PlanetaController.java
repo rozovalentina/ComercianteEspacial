@@ -1,62 +1,45 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.service.PlanetaService;
 
-@Controller
+import java.util.List;
+
+@RestController
+@RequestMapping("/planetas")
 public class PlanetaController {
 
     @Autowired
     private PlanetaService planetaService;
 
-    @GetMapping("/planetas")
-    public String mostrarPlanetas(Model model) {
-        model.addAttribute("planetas", planetaService.obtenerTodosLosPlanetas());
-        return "lista_planetas";
+    @GetMapping("")
+    public List<Planeta> mostrarPlanetas() {
+        return planetaService.obtenerTodosLosPlanetas();
     }
 
-    @GetMapping("/planetas/nuevo")
-    public String mostrarFormularioNuevoPlaneta() {
-        return "formulario_planeta";
-    }
-
-    @PostMapping("/planetas/nuevo")
-    public String guardarPlaneta(@RequestParam String nombre) {
+    @PostMapping("/nuevo")
+    public Planeta guardarPlaneta(@RequestParam String nombre) {
         Planeta planeta = new Planeta();
         planeta.setNombre(nombre);
-        planetaService.guardarPlaneta(planeta);
-        return "redirect:/planetas";
+        return planetaService.guardarPlaneta(planeta);
     }
 
-    @GetMapping("/planetas/{id}")
-    public String mostrarDetallesPlaneta(@PathVariable Long id, Model model) {
-        Planeta planeta = planetaService.obtenerPlanetaPorId(id);
-        model.addAttribute("planeta", planeta);
-        return "detalles_planeta";
+    @GetMapping("/{id}")
+    public Planeta mostrarDetallesPlaneta(@PathVariable Long id) {
+        return planetaService.obtenerPlanetaPorId(id);
     }
 
-    @GetMapping("/planetas/{id}/editar")
-    public String mostrarFormularioEditarPlaneta(@PathVariable Long id, Model model) {
-        Planeta planeta = planetaService.obtenerPlanetaPorId(id);
-        model.addAttribute("planeta", planeta);
-        return "formulario_editar_planeta";
-    }
-
-    @PostMapping("/planetas/{id}/editar")
-    public String editarPlaneta(@PathVariable Long id, @RequestParam String nombre) {
+    @PutMapping("/{id}")
+    public Planeta editarPlaneta(@PathVariable Long id, @RequestParam String nombre) {
         Planeta planeta = planetaService.obtenerPlanetaPorId(id);
         planeta.setNombre(nombre);
-        planetaService.guardarPlaneta(planeta);
-        return "redirect:/planetas";
+        return planetaService.guardarPlaneta(planeta);
     }
 
-    @PostMapping("/planetas/{id}/eliminar")
-    public String eliminarPlaneta(@PathVariable Long id) {
+    @DeleteMapping("/{id}")
+    public void eliminarPlaneta(@PathVariable Long id) {
         planetaService.eliminarPlanetaPorId(id);
-        return "redirect:/planetas";
     }
 }
