@@ -1,7 +1,7 @@
 package com.proyecto.ComercianteEspacial.service;
 
+import com.proyecto.ComercianteEspacial.model.Equipo;
 import com.proyecto.ComercianteEspacial.model.Jugador;
-import com.proyecto.ComercianteEspacial.model.Nave;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ public class ShipInfoService {
     @Autowired
     private JugadorService jugadorService;
 
-    public Nave getPlayerShipInfo(Long playerId) {
+    public Equipo getPlayerShipInfo(Long playerId) {
         // Obtener la información de la nave del jugador a partir del ID del jugador
         // Por simplicidad, se asumirá que el jugador tiene asociada una única nave 
         // Si el jugador no tiene asociada ninguna nave, se devolverá null

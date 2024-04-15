@@ -1,3 +1,5 @@
+package com.proyecto.ComercianteEspacial.controller;
+
 import com.proyecto.ComercianteEspacial.service.SpaceTravelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

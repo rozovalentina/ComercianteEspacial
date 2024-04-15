@@ -17,7 +17,7 @@ public class Jugador {
 
     @OneToOne
     @JoinColumn(name = "nave_id")
-    private Nave nave;
+    private Equipo nave;
 
 
     @ManyToOne
@@ -69,11 +69,11 @@ public class Jugador {
         this.rol = rol;
     }
 
-    public Nave getNave() {
+    public Equipo getNave() {
         return nave;
     }
 
-    public void setNave(Nave nave) {
+    public void setNave(Equipo nave) {
         this.nave = nave;
     }
 

@@ -7,4 +7,6 @@ import com.proyecto.ComercianteEspacial.model.Jugador;
 
 @Repository
 public interface JugadorRepository extends JpaRepository<Jugador, Long> {
+
+    Jugador findByNombre(String nombre);
 }
