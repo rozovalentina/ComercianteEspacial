@@ -78,4 +78,3 @@ public class Estrella {
         this.planetas = planetas;
     }
 }
-

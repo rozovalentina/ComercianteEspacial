@@ -1,5 +1,6 @@
 package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 public class Jugador {
@@ -10,6 +11,14 @@ public class Jugador {
 
     private String nombre;
     private String contraseña;
+
+    @ManyToMany
+    @JoinTable(
+            name = "jugador_estrella",
+            joinColumns = @JoinColumn(name = "jugador_id"),
+            inverseJoinColumns = @JoinColumn(name = "estrella_id")
+    )
+    private List<Estrella> estrellasVisitadas;
     
     @ManyToOne
     @JoinColumn(name = "rol_id")
@@ -59,6 +68,14 @@ public class Jugador {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public List<Estrella> getEstrellasVisitadas() {
+        return estrellasVisitadas;
+    }
+
+    public void setEstrellasVisitadas(List<Estrella> estrellasVisitadas) {
+        this.estrellasVisitadas = estrellasVisitadas;
     }
 
     public Rol getRol() {
