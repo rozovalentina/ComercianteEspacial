@@ -16,6 +16,11 @@ public class Nave {
     private Double naveZ;
 
     @ManyToOne
+    @JoinColumn(name = "estrella_id")
+    private Estrella estrella; // Nueva relación con Estrella
+
+
+    @ManyToOne
     @JoinColumn(name = "tipo_nave_id")
     private TipoNave tipoNave;
 
@@ -86,6 +91,14 @@ public class Nave {
 
     public void setTipoNave(TipoNave tipoNave) {
         this.tipoNave = tipoNave;
-    }  
+    } 
     
+    public Estrella getEstrella() {
+        return estrella;
+    }
+
+    public void setEstrella(Estrella estrella) {
+        this.estrella = estrella;
+    }
+
   }
