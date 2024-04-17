@@ -19,6 +19,10 @@ public class Equipo {
     @OneToMany(mappedBy = "equipo")
     private List<Nave> naves;
 
+    @ManyToOne
+    @JoinColumn(name = "estrella_id")
+    private Estrella estrella;
+
     public Equipo(String string) {
         //TODO Auto-generated constructor stub
     }
@@ -65,5 +69,13 @@ public class Equipo {
 
     public void setNaves(List<Nave> naves) {
         this.naves = naves;
+    }
+
+    public Estrella getEstrella() {
+        return estrella;
+    }
+
+    public void setEstrella(Estrella estrella) {
+        this.estrella = estrella;
     }
 }

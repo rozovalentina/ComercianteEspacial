@@ -1,9 +1,9 @@
 package com.proyecto.ComercianteEspacial.service;
 
+import com.proyecto.ComercianteEspacial.model.Estrella;
 import com.proyecto.ComercianteEspacial.model.Nave;
 import com.proyecto.ComercianteEspacial.model.Jugador;
 import com.proyecto.ComercianteEspacial.repository.NaveRepository;
-import com.proyecto.ComercianteEspacial.service.JugadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -21,6 +21,10 @@ public class Estrella {
     @OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL)
     private List<Planeta> planetas;
 
+    @OneToMany(mappedBy = "estrella")
+    private List<Equipo> equiposVisitantes;
+
+
     // Getters y setters
     public Long getId() {
         return id;
@@ -76,5 +80,13 @@ public class Estrella {
 
     public void setPlanetas(List<Planeta> planetas) {
         this.planetas = planetas;
+    }
+
+    public List<Equipo> getEquiposVisitantes() {
+        return equiposVisitantes;
+    }
+
+    public void setEquiposVisitantes(List<Equipo> equiposVisitantes) {
+        this.equiposVisitantes = equiposVisitantes;
     }
 }
