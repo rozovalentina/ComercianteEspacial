@@ -3,9 +3,15 @@ package com.proyecto.ComercianteEspacial.controller;
 import com.proyecto.ComercianteEspacial.model.Jugador;
 import com.proyecto.ComercianteEspacial.service.JugadorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+
 
 @RestController
 @RequestMapping("/jugadores")
@@ -14,9 +20,11 @@ public class JugadorController {
     @Autowired
     private JugadorService jugadorService;
 
-    @GetMapping("")
-    public List<Jugador> mostrarListaJugadores() {
-        return jugadorService.obtenerTodosLosJugadores();
+    @GetMapping
+    public Page<Jugador> obtenerTodosLosJugadores(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return jugadorService.obtenerTodosLosJugadores(page, size);
     }
 
     @PostMapping("/guardar")

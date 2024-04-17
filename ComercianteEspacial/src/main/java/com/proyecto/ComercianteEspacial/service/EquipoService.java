@@ -3,9 +3,11 @@ package com.proyecto.ComercianteEspacial.service;
 import com.proyecto.ComercianteEspacial.model.Equipo;
 import com.proyecto.ComercianteEspacial.repository.EquipoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -14,8 +16,9 @@ public class EquipoService {
     @Autowired
     private EquipoRepository equipoRepository;
 
-    public List<Equipo> getAllEquipos() {
-        return equipoRepository.findAll();
+    public Page<Equipo> obtenerTodosLosEquipos(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return equipoRepository.findAll(pageable);
     }
 
     public Equipo getEquipoById(Long id) {

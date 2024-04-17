@@ -1,23 +1,25 @@
 package com.proyecto.ComercianteEspacial.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
 import com.proyecto.ComercianteEspacial.model.Equipo;
 import com.proyecto.ComercianteEspacial.service.EquipoService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/equipos")
+@CrossOrigin("http://localhost:4200")
 public class EquipoController {
 
     @Autowired
     private EquipoService equipoService;
 
     @GetMapping("")
-    @CrossOrigin("http://localhost:4200/")
-    public List<Equipo> getAllEquipos() {
-        return equipoService.getAllEquipos();
+    public Page<Equipo> mostrarEquipos(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return equipoService.obtenerTodosLosEquipos(page, size);
     }
 
     @GetMapping("/{id}")

@@ -1,11 +1,11 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.service.PlanetaService;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/planetas")
@@ -15,8 +15,10 @@ public class PlanetaController {
     private PlanetaService planetaService;
 
     @GetMapping("")
-    public List<Planeta> mostrarPlanetas() {
-        return planetaService.obtenerTodosLosPlanetas();
+    public Page<Planeta> mostrarPlanetas(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return planetaService.obtenerTodosLosPlanetas(page, size);
     }
 
     @PostMapping("/nuevo")
