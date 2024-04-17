@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Jugador {
@@ -12,6 +13,7 @@ public class Jugador {
     private String nombre;
     private String contraseña;
 
+    @JsonManagedReference
     @ManyToMany
     @JoinTable(
             name = "jugador_estrella",

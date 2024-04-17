@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+
 import jakarta.persistence.*;
 
 @Entity

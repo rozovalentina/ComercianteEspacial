@@ -1,5 +1,6 @@
 package com.proyecto.ComercianteEspacial.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Equipo {
     private String nombre;
     private Double dinero;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     private List<Jugador> jugadores;
 
