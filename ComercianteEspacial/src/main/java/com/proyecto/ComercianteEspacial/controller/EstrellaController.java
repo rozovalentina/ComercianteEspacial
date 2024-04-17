@@ -3,6 +3,7 @@ package com.proyecto.ComercianteEspacial.controller;
 import com.proyecto.ComercianteEspacial.model.Estrella;
 import com.proyecto.ComercianteEspacial.service.EstrellaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,8 +16,10 @@ public class EstrellaController {
     private EstrellaService estrellaService;
 
     @GetMapping("")
-    public List<Estrella> mostrarListaEstrellas() {
-        return estrellaService.obtenerTodasEstrellas();
+    public Page<Estrella> mostrarListaEstrellas(
+        @RequestParam(defaultValue = "0")int page,
+        @RequestParam(defaultValue = "10") int size) {
+        return estrellaService.obtenerTodasEstrellas(page,size);
     }
 
     @GetMapping("/{id}")

@@ -5,8 +5,10 @@ import com.proyecto.ComercianteEspacial.model.Planeta;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+
 public interface EstrellaService {
-    List<Estrella> obtenerTodasEstrellas();
+    Page<Estrella> obtenerTodasEstrellas(int page,int size);
     Estrella obtenerEstrellaPorId(Long id);
     Estrella guardarEstrella(Estrella estrella);
     Estrella actualizarEstrella(Long id, Estrella estrella);

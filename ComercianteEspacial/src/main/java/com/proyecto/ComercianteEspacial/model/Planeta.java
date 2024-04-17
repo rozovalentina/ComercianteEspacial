@@ -11,7 +11,7 @@ public class Planeta {
     private Long id;
 
     private String nombre;
-
+    //esto es para arreglar lo ciclico
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "estrella_id")

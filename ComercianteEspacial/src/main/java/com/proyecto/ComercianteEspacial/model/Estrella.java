@@ -19,6 +19,7 @@ public class Estrella {
     private Double coordenadaZ;
 
     private boolean habitada;
+    //esto es para arreglar lo ciclico
     @JsonManagedReference
     @OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL)
     private List<Planeta> planetas;

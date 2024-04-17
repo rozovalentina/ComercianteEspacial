@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.service;
 import com.proyecto.ComercianteEspacial.model.Estrella;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
@@ -15,7 +16,7 @@ public class NavigationService {
     // Método para obtener las 10 estrellas más cercanas a la posición actual de la nave
     public List<Estrella> getNearestStars(double naveX, double naveY, double naveZ) {
         // Obtener todas las estrellas del servicio
-        List<Estrella> estrellas = estrellaService.obtenerTodasEstrellas();
+        Page<Estrella> estrellas = estrellaService.obtenerTodasEstrellas(0,10);
 
         // Calcular la distancia entre la nave y cada estrella, y ordenarlas por distancia
         List<Estrella> estrellasOrdenadas = estrellas.stream()

@@ -4,6 +4,8 @@ import com.proyecto.ComercianteEspacial.model.Estrella;
 import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.repository.EstrellaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +18,8 @@ public class EstrellaServiceImpl implements EstrellaService {
     private EstrellaRepository estrellaRepository;
 
     @Override
-    public List<Estrella> obtenerTodasEstrellas() {
-        return estrellaRepository.findAll();
+    public Page<Estrella> obtenerTodasEstrellas(int page, int size) {
+        return estrellaRepository.findAll(PageRequest.of(page, size));
     }
 
     @Override
