@@ -15,6 +15,7 @@ public class EquipoController {
     private EquipoService equipoService;
 
     @GetMapping("")
+    @CrossOrigin("http://localhost:4200/")
     public List<Equipo> getAllEquipos() {
         return equipoService.getAllEquipos();
     }

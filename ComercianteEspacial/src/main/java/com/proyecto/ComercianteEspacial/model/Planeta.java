@@ -1,4 +1,6 @@
 package com.proyecto.ComercianteEspacial.model;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class Planeta {
 
     private String nombre;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "estrella_id")
     private Estrella estrella;

@@ -3,6 +3,8 @@ package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Estrella {
 
@@ -17,13 +19,12 @@ public class Estrella {
     private Double coordenadaZ;
 
     private boolean habitada;
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL)
     private List<Planeta> planetas;
 
     @OneToMany(mappedBy = "estrella")
     private List<Equipo> equiposVisitantes;
-
 
     // Getters y setters
     public Long getId() {
