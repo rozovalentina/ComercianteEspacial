@@ -16,13 +16,7 @@ public class LoginController {
     private JugadorService jugadorService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Jugador jugador) {
-        // Verificar las credenciales del jugador en la base de datos
-       // boolean authenticated = jugadorService.authenticate(jugador.getNombre(), jugador.getContraseña());
-        //if (authenticated) {
-       //     return ResponseEntity.ok("Login successful");
-       // } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-//}
+    public Jugador login(@RequestBody Jugador jugador) {
+        return jugadorService.authenticate(jugador.getNombre(), jugador.getContraseña());
     }
 }

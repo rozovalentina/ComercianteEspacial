@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
-
 @Service
 public class JugadorService {
 
@@ -45,10 +44,7 @@ public class JugadorService {
         }
     }
 
-  //  public boolean authenticate(String nombre, String contraseña) {
-        // Buscar el jugador por nombre de usuario en la base de datos
-       // Jugador jugador = jugadorRepository.findByNombre(nombre);
-        // Verificar si se encontró un jugador y si la contraseña coincide
-        //return jugador != null && jugador.getContraseña().equals(contraseña);
-    //}
+    public Jugador authenticate(String nombre, String contraseña) {
+        return jugadorRepository.findbyName(nombre);
+    }
 }

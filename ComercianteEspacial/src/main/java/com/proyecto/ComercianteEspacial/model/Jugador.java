@@ -13,7 +13,7 @@ public class Jugador {
     private Long id;
 
     private String nombre;
-    private String contraseña;
+    private String contrasena;
 
   
     @ManyToMany
@@ -69,11 +69,11 @@ public class Jugador {
     }
 
     public String getContraseña() {
-        return contraseña;
+        return contrasena;
     }
 
     public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+        this.contrasena = contraseña;
     }
 
     public List<Estrella> getEstrellasVisitadas() {

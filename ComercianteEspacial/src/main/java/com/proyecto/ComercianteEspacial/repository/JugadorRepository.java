@@ -11,4 +11,5 @@ import com.proyecto.ComercianteEspacial.model.Jugador;
 public interface JugadorRepository extends JpaRepository<Jugador, Long> {
     @SuppressWarnings("null")
     Page<Jugador> findAll(Pageable pageable);
+    Jugador findbyName(String name);
 }
