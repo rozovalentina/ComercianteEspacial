@@ -9,6 +9,6 @@ import com.proyecto.ComercianteEspacial.model.Planeta;
 
 @Repository
 public interface PlanetaRepository extends JpaRepository<Planeta, Long> {
-
+    @SuppressWarnings("null")
     Page<Planeta> findAll(Pageable pageable);
 }

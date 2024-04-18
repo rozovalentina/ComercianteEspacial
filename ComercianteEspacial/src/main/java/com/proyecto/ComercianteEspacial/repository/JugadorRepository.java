@@ -9,6 +9,6 @@ import com.proyecto.ComercianteEspacial.model.Jugador;
 
 @Repository
 public interface JugadorRepository extends JpaRepository<Jugador, Long> {
-
+    @SuppressWarnings("null")
     Page<Jugador> findAll(Pageable pageable);
 }

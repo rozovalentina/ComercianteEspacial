@@ -9,5 +9,6 @@ import com.proyecto.ComercianteEspacial.model.Estrella;
 
 @Repository
 public interface EstrellaRepository extends JpaRepository<Estrella, Long> {
+    @SuppressWarnings("null")
     Page<Estrella> findAll(Pageable pageable);
 }

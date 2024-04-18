@@ -9,5 +9,6 @@ import com.proyecto.ComercianteEspacial.model.Equipo;
 @Repository
 public interface EquipoRepository extends JpaRepository<Equipo, Long> {
 
+    @SuppressWarnings("null")
     Page<Equipo> findAll(Pageable pageable);
 }
