@@ -3,8 +3,8 @@ package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Estrella {
@@ -21,11 +21,11 @@ public class Estrella {
 
     private boolean habitada;
     //esto es para arreglar lo ciclico
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL)
     private List<Planeta> planetas;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "estrella")
     private List<Equipo> equiposVisitantes;
     // Getters y setters
