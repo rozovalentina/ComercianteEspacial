@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/jugadores")
 public class JugadorController {
 

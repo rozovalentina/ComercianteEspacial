@@ -8,6 +8,7 @@ import com.proyecto.ComercianteEspacial.service.PlanetaService;
 
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/planetas")
 public class PlanetaController {
 

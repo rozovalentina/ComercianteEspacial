@@ -8,6 +8,7 @@ import com.proyecto.ComercianteEspacial.service.TipoNaveService;
 import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:4200")
 @RequestMapping("/tiposnave")
 public class TipoNaveController {
 
