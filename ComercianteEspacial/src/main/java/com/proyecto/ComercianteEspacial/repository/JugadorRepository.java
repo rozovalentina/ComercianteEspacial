@@ -12,6 +12,6 @@ import com.proyecto.ComercianteEspacial.model.Jugador;
 public interface JugadorRepository extends JpaRepository<Jugador, Long> {
     @SuppressWarnings("null")
     Page<Jugador> findAll(Pageable pageable);
-    @Query("SELECT j FROM Jugador j WHERE j.nombre LIKE %:nombre%")
+    @Query("SELECT j FROM Jugador j WHERE j.nombre = :nombre")
     Jugador findbyName(String nombre);
 }
