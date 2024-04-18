@@ -37,7 +37,7 @@ public class JugadorService {
         if (ju != null) {
             ju.setNombre(jugador.getNombre());
             ju.setRol(jugador.getRol());
-            ju.setContraseña(jugador.getContraseña());
+            ju.setContrasena(jugador.getContrasena());
             return jugadorRepository.save(ju);
         } else {
             return null;

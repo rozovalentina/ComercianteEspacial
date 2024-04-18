@@ -6,6 +6,9 @@ import com.proyecto.ComercianteEspacial.model.TipoNave;
 import com.proyecto.ComercianteEspacial.service.TipoNaveService;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RestController
 @CrossOrigin("http://localhost:4200")
@@ -25,5 +28,11 @@ public class TipoNaveController {
         TipoNave tipoNave = new TipoNave();
         tipoNave.setNombre(nombre);
         return tipoNaveService.guardarTipoNave(tipoNave);
+    }    
+    @GetMapping("/{id}")
+    public TipoNave detalleNave(@PathVariable Long id) {
+        return this.tipoNaveService.obtenerTipoNavePorId(id);
     }
+    
+    
 }

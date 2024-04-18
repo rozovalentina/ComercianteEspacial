@@ -12,9 +12,8 @@ public class Jugador {
     private Long id;
 
     private String nombre;
-    private String contraseña;
+    private String contrasena;
 
-  
     @ManyToMany
     @JoinTable(
             name = "jugador_estrella",
@@ -65,15 +64,7 @@ public class Jugador {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    public String getContraseña() {
-        return contraseña;
-    }
-
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
-    }
-
+    
     public List<Estrella> getEstrellasVisitadas() {
         return estrellasVisitadas;
     }
@@ -105,4 +96,14 @@ public class Jugador {
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
+    public String getContrasena() {
+        return contrasena;
+    }
+
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
+    }
 }
+
+
+    
