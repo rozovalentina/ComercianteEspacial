@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import com.proyecto.ComercianteEspacial.model.*;
 import com.proyecto.ComercianteEspacial.repository.*;
+import com.proyecto.ComercianteEspacial.repository.NaveRepository;
+
 
 import java.util.List;
 import java.util.Random;
@@ -14,6 +16,9 @@ public class DBInitializer implements CommandLineRunner {
 
     @Autowired
     private EstrellaRepository estrellaRepository;
+
+    @Autowired
+    private NaveRepository naveRepository;
 
     @Autowired
     private PlanetaRepository planetaRepository;
@@ -75,30 +80,59 @@ public class DBInitializer implements CommandLineRunner {
     public void generarJugadores() {
         int totalEquipos = 10;
         int jugadoresPorEquipo = 10;
-
+    
+        List<TipoNave> tiposNaves = tipoNaveRepository.findAll();
         List<Rol> roles = RolRepository.findAll();
-
+    
         for (int i = 0; i < totalEquipos; i++) {
             Equipo equipo = new Equipo();
             equipo.setNombre("Equipo " + i);
             equipo.setDinero(1000.0); // Establecer una cantidad inicial de dinero
             equipoRepository.save(equipo);
-
+    
             for (int j = 0; j < jugadoresPorEquipo; j++) {
                 Jugador jugador = new Jugador();
                 jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
                 jugador.setContraseña(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
                 jugador.setEquipo(equipo);
-
+    
                 // Asignar un rol aleatorio al jugador
-                int randomIndex = new Random().nextInt(roles.size());
-                Rol rolAleatorio = roles.get(randomIndex);
-                jugador.setRol(rolAleatorio);
-
+                if (!roles.isEmpty()) {
+                    int randomIndexRol = new Random().nextInt(roles.size());
+                    Rol rolAleatorio = roles.get(randomIndexRol);
+                    jugador.setRol(rolAleatorio);
+                } else {
+                    // Haz algo si la lista de roles está vacía
+                }
+    
+                // Crear y guardar una nueva instancia de Nave
+                Nave nave = new Nave();
+                nave.setNombre("Nave de Jugador " + (i * jugadoresPorEquipo + j));
+                nave.setCargaMaxima(100.0); // Configurar otras propiedades de la nave si es necesario
+    
+                // Asignar un tipo de nave aleatorio a la nave
+                if (!tiposNaves.isEmpty()) {
+                    int randomIndexTipoNave = new Random().nextInt(tiposNaves.size());
+                    TipoNave tipoNaveAleatorio = tiposNaves.get(randomIndexTipoNave);
+                    nave.setTipoNave(tipoNaveAleatorio);
+                } else {
+                    // Haz algo si la lista de tipos de naves está vacía
+                }
+    
+                // Guardar la instancia de Nave utilizando la instancia de NaveRepository
+                naveRepository.save(nave);
+    
+                // Asignar la nave al jugador
+                jugador.setNave(nave);
+    
                 jugadorRepository.save(jugador);
             }
         }
     }
+    
+    
+    
+    
 
     public void generarEspecificacionesProductos() {
         int totalEspecificaciones = 500;

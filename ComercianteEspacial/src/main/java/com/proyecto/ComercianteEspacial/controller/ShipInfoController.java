@@ -1,6 +1,6 @@
 package com.proyecto.ComercianteEspacial.controller;
 
-import com.proyecto.ComercianteEspacial.model.Equipo;
+
 import com.proyecto.ComercianteEspacial.model.Nave;
 import com.proyecto.ComercianteEspacial.service.ShipInfoService;
 import org.springframework.beans.factory.annotation.Autowired;

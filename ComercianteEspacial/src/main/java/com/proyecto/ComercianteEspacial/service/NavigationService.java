@@ -16,7 +16,7 @@ public class NavigationService {
     // Método para obtener las 10 estrellas más cercanas a la posición actual de la nave
     public List<Estrella> getNearestStars(double naveX, double naveY, double naveZ) {
         // Obtener todas las estrellas del servicio
-        Page<Estrella> estrellas = estrellaService.obtenerTodasEstrellas(0,10);
+        Page<Estrella> estrellas = estrellaService.obtenerTodasEstrellas(0,100);
 
         // Calcular la distancia entre la nave y cada estrella, y ordenarlas por distancia
         List<Estrella> estrellasOrdenadas = estrellas.stream()
