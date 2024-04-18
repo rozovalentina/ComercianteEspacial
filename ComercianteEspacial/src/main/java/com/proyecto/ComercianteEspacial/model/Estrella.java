@@ -23,7 +23,8 @@ public class Estrella {
     @JsonManagedReference
     @OneToMany(mappedBy = "estrella", cascade = CascadeType.ALL)
     private List<Planeta> planetas;
-
+ 
+    @JsonManagedReference
     @OneToMany(mappedBy = "estrella")
     private List<Equipo> equiposVisitantes;
 

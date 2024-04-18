@@ -1,6 +1,8 @@
 package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -13,7 +15,7 @@ public class Jugador {
     private String nombre;
     private String contraseña;
 
-    @JsonManagedReference
+  
     @ManyToMany
     @JoinTable(
             name = "jugador_estrella",
@@ -21,7 +23,8 @@ public class Jugador {
             inverseJoinColumns = @JoinColumn(name = "estrella_id")
     )
     private List<Estrella> estrellasVisitadas;
-    
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
@@ -30,7 +33,7 @@ public class Jugador {
     @JoinColumn(name = "nave_id")
     private Equipo nave;
 
-
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;

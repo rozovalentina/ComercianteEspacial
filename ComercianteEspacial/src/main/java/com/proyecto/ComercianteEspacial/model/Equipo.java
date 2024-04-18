@@ -1,5 +1,6 @@
 package com.proyecto.ComercianteEspacial.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
@@ -18,9 +19,11 @@ public class Equipo {
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     private List<Jugador> jugadores;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "equipo")
     private List<Nave> naves;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "estrella_id")
     private Estrella estrella;
