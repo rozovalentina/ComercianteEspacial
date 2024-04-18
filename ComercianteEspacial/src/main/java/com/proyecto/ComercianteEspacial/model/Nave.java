@@ -1,6 +1,8 @@
 package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Nave {
 
@@ -15,18 +17,25 @@ public class Nave {
     private Double naveY;
     private Double naveZ;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "estrella_id")
     private Estrella estrella; // Nueva relación con Estrella
 
-
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "tipo_nave_id")
     private TipoNave tipoNave;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
+
+    @OneToOne(mappedBy = "nave")
+    @JsonIgnore
+    private Jugador jugador;
+
     // Getters y setters
     public Long getId() {
         return id;

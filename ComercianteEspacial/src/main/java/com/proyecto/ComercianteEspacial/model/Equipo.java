@@ -1,7 +1,8 @@
 package com.proyecto.ComercianteEspacial.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -15,19 +16,18 @@ public class Equipo {
     private String nombre;
     private Double dinero;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     private List<Jugador> jugadores;
 
-    @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "equipo")
     private List<Nave> naves;
 
-    @JsonBackReference
+    @JsonIgnore // Ignorar esta propiedad al serializar/deserializar
     @ManyToOne
     @JoinColumn(name = "estrella_id")
     private Estrella estrella;
-
     public Equipo(String string) {
         //TODO Auto-generated constructor stub
     }

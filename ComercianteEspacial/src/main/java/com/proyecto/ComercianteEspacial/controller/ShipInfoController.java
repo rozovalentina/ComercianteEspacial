@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import com.proyecto.ComercianteEspacial.model.Equipo;
+import com.proyecto.ComercianteEspacial.model.Nave;
 import com.proyecto.ComercianteEspacial.service.ShipInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class ShipInfoController {
     private ShipInfoService shipInfoService;
 
     @GetMapping("/{playerId}")
-    public Equipo getPlayerShipInfo(@PathVariable Long playerId) {
+    public Nave getPlayerShipInfo(@PathVariable Long playerId) {
         return shipInfoService.getPlayerShipInfo(playerId);
     }
 }

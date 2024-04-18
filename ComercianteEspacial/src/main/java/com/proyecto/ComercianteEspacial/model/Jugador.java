@@ -2,7 +2,8 @@ package com.proyecto.ComercianteEspacial.model;
 import jakarta.persistence.*;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class Jugador {
@@ -12,8 +13,9 @@ public class Jugador {
     private Long id;
 
     private String nombre;
-    private String contrasena;
+    private String contraseña;
 
+  
     @ManyToMany
     @JoinTable(
             name = "jugador_estrella",
@@ -22,19 +24,20 @@ public class Jugador {
     )
     private List<Estrella> estrellasVisitadas;
 
-    @JsonBackReference
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "rol_id")
     private Rol rol;
 
-    @OneToOne
-    @JoinColumn(name = "nave_id")
-    private Equipo nave;
-
-    @JsonBackReference
+    @JsonIgnore // Ignorar esta propiedad al serializar/deserializar
     @ManyToOne
     @JoinColumn(name = "equipo_id")
     private Equipo equipo;
+
+    @OneToOne
+    @JoinColumn(name = "nave_id")
+    @JsonIgnore
+    private Nave nave;
 
     public Jugador() {
         // Constructor vacío necesario para JPA
@@ -64,7 +67,15 @@ public class Jugador {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
+
+    public String getContraseña() {
+        return contraseña;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
     public List<Estrella> getEstrellasVisitadas() {
         return estrellasVisitadas;
     }
@@ -81,11 +92,11 @@ public class Jugador {
         this.rol = rol;
     }
 
-    public Equipo getNave() {
-        return nave;
+    public Nave getNave() {
+        return  nave;
     }
 
-    public void setNave(Equipo nave) {
+    public void setNave(Nave nave) {
         this.nave = nave;
     }
 
@@ -96,14 +107,4 @@ public class Jugador {
     public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
 }
-
-
-    

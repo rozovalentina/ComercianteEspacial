@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
+
 @Service
 public class JugadorService {
 
@@ -37,18 +38,17 @@ public class JugadorService {
         if (ju != null) {
             ju.setNombre(jugador.getNombre());
             ju.setRol(jugador.getRol());
-            ju.setContrasena(jugador.getContrasena());
+            ju.setContraseña(jugador.getContraseña());
             return jugadorRepository.save(ju);
         } else {
             return null;
         }
     }
 
-    public boolean authenticate(String nombre, String contraseña) {
+  //  public boolean authenticate(String nombre, String contraseña) {
         // Buscar el jugador por nombre de usuario en la base de datos
-        //Jugador jugador = jugadorRepository.findByNombre(nombre);
+       // Jugador jugador = jugadorRepository.findByNombre(nombre);
         // Verificar si se encontró un jugador y si la contraseña coincide
         //return jugador != null && jugador.getContraseña().equals(contraseña);
-        return true;
-    }
+    //}
 }

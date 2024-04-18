@@ -87,7 +87,7 @@ public class DBInitializer implements CommandLineRunner {
             for (int j = 0; j < jugadoresPorEquipo; j++) {
                 Jugador jugador = new Jugador();
                 jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
-                jugador.setContrasena(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
+                jugador.setContraseña(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
                 jugador.setEquipo(equipo);
 
                 // Asignar un rol aleatorio al jugador

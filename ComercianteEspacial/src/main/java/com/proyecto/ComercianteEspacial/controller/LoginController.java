@@ -18,11 +18,11 @@ public class LoginController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Jugador jugador) {
         // Verificar las credenciales del jugador en la base de datos
-        boolean authenticated = jugadorService.authenticate(jugador.getNombre(), jugador.getContrasena());
-        if (authenticated) {
-            return ResponseEntity.ok("Login successful");
-        } else {
+       // boolean authenticated = jugadorService.authenticate(jugador.getNombre(), jugador.getContraseña());
+        //if (authenticated) {
+       //     return ResponseEntity.ok("Login successful");
+       // } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
-        }
+//}
     }
 }
