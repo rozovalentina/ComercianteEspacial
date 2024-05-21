@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface NaveRepository extends JpaRepository<Nave, Long> {
     List<Nave> findByEstrella(Estrella estrella);
+    List<Nave> findByEstrellaId(Long estrellaId);
 }

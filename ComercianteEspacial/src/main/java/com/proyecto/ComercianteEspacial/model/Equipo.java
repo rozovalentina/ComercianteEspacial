@@ -21,8 +21,8 @@ public class Equipo {
     private List<Jugador> jugadores;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "equipo")
-    private List<Nave> naves;
+    @OneToOne(mappedBy = "equipo")
+    private Nave nave;
 
     @JsonIgnore // Ignorar esta propiedad al serializar/deserializar
     @ManyToOne
@@ -68,12 +68,12 @@ public class Equipo {
         this.jugadores = jugadores;
     }
 
-    public List<Nave> getNaves() {
-        return naves;
+    public Nave getNave() {
+        return nave;
     }
 
-    public void setNaves(List<Nave> naves) {
-        this.naves = naves;
+    public void setNave(Nave nave) {
+        this.nave = nave;
     }
 
     public Estrella getEstrella() {

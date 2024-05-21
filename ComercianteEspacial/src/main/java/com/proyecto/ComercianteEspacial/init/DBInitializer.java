@@ -83,54 +83,59 @@ public class DBInitializer implements CommandLineRunner {
     
         List<TipoNave> tiposNaves = tipoNaveRepository.findAll();
         List<Rol> roles = RolRepository.findAll();
+        List<Estrella> estrellas = estrellaRepository.findAll();
+    
+        Random random = new Random();
     
         for (int i = 0; i < totalEquipos; i++) {
             Equipo equipo = new Equipo();
             equipo.setNombre("Equipo " + i);
-            equipo.setDinero(1000.0); // Establecer una cantidad inicial de dinero
+            equipo.setDinero(1000.0);
             equipoRepository.save(equipo);
     
             for (int j = 0; j < jugadoresPorEquipo; j++) {
                 Jugador jugador = new Jugador();
                 jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
-                jugador.setContraseña(generarContraseñaAleatoria()); // Generar una contraseña aleatoria si es necesario
+                jugador.setContraseña(generarContraseñaAleatoria());
                 jugador.setEquipo(equipo);
     
-                // Asignar un rol aleatorio al jugador
+                // Asignar un rol aleatorio al jugador si la lista de roles no está vacía
                 if (!roles.isEmpty()) {
-                    int randomIndexRol = new Random().nextInt(roles.size());
+                    int randomIndexRol = random.nextInt(roles.size());
                     Rol rolAleatorio = roles.get(randomIndexRol);
                     jugador.setRol(rolAleatorio);
                 } else {
-                    // Haz algo si la lista de roles está vacía
+                    // Haz algo si la lista de roles está vacía (por ejemplo, asignar un rol por defecto)
+                    // Aquí puedes asignar un rol por defecto o lanzar una excepción según tu lógica de negocio
                 }
     
-                // Crear y guardar una nueva instancia de Nave
-                Nave nave = new Nave();
-                nave.setNombre("Nave de Jugador " + (i * jugadoresPorEquipo + j));
-                nave.setCargaMaxima(100.0); // Configurar otras propiedades de la nave si es necesario
-    
-                // Asignar un tipo de nave aleatorio a la nave
+                // Asignar un tipo de nave aleatorio si la lista de tipos de naves no está vacía
                 if (!tiposNaves.isEmpty()) {
-                    int randomIndexTipoNave = new Random().nextInt(tiposNaves.size());
+                    int randomIndexTipoNave = random.nextInt(tiposNaves.size());
                     TipoNave tipoNaveAleatorio = tiposNaves.get(randomIndexTipoNave);
+                    Nave nave = new Nave();
+                    nave.setNombre("Nave de Jugador " + (i * jugadoresPorEquipo + j));
+                    nave.setCargaMaxima(100.0);
                     nave.setTipoNave(tipoNaveAleatorio);
-                } else {
-                    // Haz algo si la lista de tipos de naves está vacía
+                    
+                    // Asignar una estrella aleatoria si la lista de estrellas no está vacía
+                    if (!estrellas.isEmpty()) {
+                        int randomIndexEstrella = random.nextInt(estrellas.size());
+                        Estrella estrellaAleatoria = estrellas.get(randomIndexEstrella);
+                        nave.setEstrella(estrellaAleatoria);
+                    }
+                    
+                    naveRepository.save(nave);
+                    jugador.setNave(nave);
+    
+                    // Asignar productos a la nave
+                    asignarProductosANave(nave);
                 }
-    
-                // Guardar la instancia de Nave utilizando la instancia de NaveRepository
-                naveRepository.save(nave);
-    
-                // Asignar la nave al jugador
-                jugador.setNave(nave);
-    
+        
                 jugadorRepository.save(jugador);
             }
         }
     }
-    
-    
     
     
 
@@ -215,10 +220,10 @@ public class DBInitializer implements CommandLineRunner {
 
     // aleatorio)
     private String generarContraseñaAleatoria() {
-        return "contraseñaAleatoria"; 
+        return "contraseñaAleatoria";
     }
 
-    private void crearRol(){
+    private void crearRol() {
         if (RolRepository.findAll().isEmpty()) {
             Rol rol1 = new Rol();
             rol1.setNombreR("Piloto");
@@ -231,4 +236,20 @@ public class DBInitializer implements CommandLineRunner {
             RolRepository.save(rol3);
         }
     }
+
+    private void asignarProductosANave(Nave nave) {
+        List<Producto> productos = productoRepository.findAll();
+        Random random = new Random();
+        int numProductos = random.nextInt(5) + 1; // Asigna entre 1 y 5 productos a la nave
+    
+        for (int i = 0; i < numProductos; i++) {
+            int randomIndex = random.nextInt(productos.size());
+            Producto producto = productos.get(randomIndex);
+            nave.agregarProducto(producto, 10.0); // Agrega 10 unidades del producto a la nave
+            productoRepository.save(producto); // Guarda el producto en la base de datos
+        }
+    
+        naveRepository.save(nave); // Guarda la nave con los productos asignados
+    }
+    
 }

@@ -1,6 +1,9 @@
 package com.proyecto.ComercianteEspacial.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
+
 @Entity
 public class Producto {
     
@@ -12,16 +15,21 @@ public class Producto {
     private Double factorDemanda;
     private Double factorOferta;
     private Double volumenUnidad;
-    private Double PrecioVenta;
-    private Double PrecioCompra;
+    private Double precioVenta; // Cambiado a camelCase
+    private Double precioCompra; // Cambiado a camelCase
+    private Double cantidad;
 
-    public Producto(String string, double random) {
-        //TODO Auto-generated constructor stub
+    public Producto(String nombre, double cantidad) {
+        this.nombre = nombre;
+        this.cantidad = cantidad;
     }
 
     public Producto() {
-        //TODO Auto-generated constructor stub
     }
+
+    @JsonIgnore
+    @ManyToOne // Agregar relación Many-to-One con Nave
+    private Nave nave;
 
     // Getters y setters
     public Long getId() {
@@ -65,20 +73,34 @@ public class Producto {
     }
 
     public Double getPrecioVenta() {
-        return PrecioVenta;
+        return precioVenta;
     }
 
-    public void setPrecioVenta(Double PrecioVenta) {
-        this.PrecioVenta = PrecioVenta;
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
     }
 
     public Double getPrecioCompra() {
-        return PrecioCompra;
+        return precioCompra;
     }
 
-    public void setPrecioCompra(Double PrecioCompra) {
-        this.PrecioCompra = PrecioCompra;
+    public void setPrecioCompra(Double precioCompra) {
+        this.precioCompra = precioCompra;
     }
 
+    public Double getCantidad() {
+        return cantidad;
+    }
 
+    public void setCantidad(Double cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public Nave getNave() {
+        return nave;
+    }
+
+    public void setNave(Nave nave) {
+        this.nave = nave;
+    }
 }
