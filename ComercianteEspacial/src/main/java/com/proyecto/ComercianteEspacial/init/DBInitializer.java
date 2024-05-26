@@ -5,8 +5,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import com.proyecto.ComercianteEspacial.model.*;
 import com.proyecto.ComercianteEspacial.repository.*;
-import com.proyecto.ComercianteEspacial.repository.NaveRepository;
-
 
 import java.util.List;
 import java.util.Random;
@@ -35,12 +33,9 @@ public class DBInitializer implements CommandLineRunner {
     @Autowired
     private EquipoRepository equipoRepository;
 
-    @Autowired
-    private RolRepository RolRepository;
 
     @Override
     public void run(String... args) throws Exception {
-        crearRol();
         generarEstrellas();
         generarJugadores();
         generarTiposNaves();
@@ -82,11 +77,9 @@ public class DBInitializer implements CommandLineRunner {
         int jugadoresPorEquipo = 10;
     
         List<TipoNave> tiposNaves = tipoNaveRepository.findAll();
-        List<Rol> roles = RolRepository.findAll();
         List<Estrella> estrellas = estrellaRepository.findAll();
-    
+
         Random random = new Random();
-    
         for (int i = 0; i < totalEquipos; i++) {
             Equipo equipo = new Equipo();
             equipo.setNombre("Equipo " + i);
@@ -98,18 +91,7 @@ public class DBInitializer implements CommandLineRunner {
                 jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
                 jugador.setContraseña(generarContraseñaAleatoria());
                 jugador.setEquipo(equipo);
-    
-                // Asignar un rol aleatorio al jugador si la lista de roles no está vacía
-                if (!roles.isEmpty()) {
-                    int randomIndexRol = random.nextInt(roles.size());
-                    Rol rolAleatorio = roles.get(randomIndexRol);
-                    jugador.setRol(rolAleatorio);
-                } else {
-                    // Haz algo si la lista de roles está vacía (por ejemplo, asignar un rol por defecto)
-                    // Aquí puedes asignar un rol por defecto o lanzar una excepción según tu lógica de negocio
-                }
-    
-                // Asignar un tipo de nave aleatorio si la lista de tipos de naves no está vacía
+                
                 if (!tiposNaves.isEmpty()) {
                     int randomIndexTipoNave = random.nextInt(tiposNaves.size());
                     TipoNave tipoNaveAleatorio = tiposNaves.get(randomIndexTipoNave);
@@ -222,21 +204,6 @@ public class DBInitializer implements CommandLineRunner {
     private String generarContraseñaAleatoria() {
         return "contraseñaAleatoria";
     }
-
-    private void crearRol() {
-        if (RolRepository.findAll().isEmpty()) {
-            Rol rol1 = new Rol();
-            rol1.setNombreR("Piloto");
-            RolRepository.save(rol1);
-            Rol rol2 = new Rol();
-            rol2.setNombreR("Comerciante");
-            RolRepository.save(rol2);
-            Rol rol3 = new Rol();
-            rol3.setNombreR("Capitán");
-            RolRepository.save(rol3);
-        }
-    }
-
     private void asignarProductosANave(Nave nave) {
         List<Producto> productos = productoRepository.findAll();
         Random random = new Random();

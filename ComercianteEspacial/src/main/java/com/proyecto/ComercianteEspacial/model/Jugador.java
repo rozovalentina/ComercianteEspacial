@@ -24,10 +24,6 @@ public class Jugador {
     )
     private List<Estrella> estrellasVisitadas;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "rol_id")
-    private Rol rol;
 
     @JsonIgnore // Ignorar esta propiedad al serializar/deserializar
     @ManyToOne
@@ -82,14 +78,6 @@ public class Jugador {
 
     public void setEstrellasVisitadas(List<Estrella> estrellasVisitadas) {
         this.estrellasVisitadas = estrellasVisitadas;
-    }
-
-    public Rol getRol() {
-        return rol;
-    }
-
-    public void setRol(Rol rol) {
-        this.rol = rol;
     }
 
     public Nave getNave() {

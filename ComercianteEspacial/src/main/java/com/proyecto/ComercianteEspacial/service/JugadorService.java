@@ -36,7 +36,6 @@ public class JugadorService {
         Jugador ju = jugadorRepository.findById(id).orElse(null);
         if (ju != null) {
             ju.setNombre(jugador.getNombre());
-            ju.setRol(jugador.getRol());
             ju.setContraseña(jugador.getContraseña());
             return jugadorRepository.save(ju);
         } else {
