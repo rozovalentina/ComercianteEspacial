@@ -4,7 +4,6 @@ import com.proyecto.ComercianteEspacial.model.Jugador;
 import com.proyecto.ComercianteEspacial.service.JugadorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
