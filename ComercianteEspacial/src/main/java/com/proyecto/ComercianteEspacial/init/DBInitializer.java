@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import com.proyecto.ComercianteEspacial.model.*;
 import com.proyecto.ComercianteEspacial.repository.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 import java.util.Random;
@@ -33,6 +34,8 @@ public class DBInitializer implements CommandLineRunner {
     @Autowired
     private EquipoRepository equipoRepository;
 
+    @Autowired 
+    private PasswordEncoder passwordEnconder;
 
     @Override
     public void run(String... args) throws Exception {
@@ -87,10 +90,19 @@ public class DBInitializer implements CommandLineRunner {
             equipoRepository.save(equipo);
     
             for (int j = 0; j < jugadoresPorEquipo; j++) {
-                Jugador jugador = new Jugador();
-                jugador.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
-                jugador.setContraseña(generarContraseñaAleatoria());
-                jugador.setEquipo(equipo);
+                Jugador usuario = new Jugador();
+                usuario.setNombre("Jugador " + (i * jugadoresPorEquipo + j));
+                usuario.setpassword(passwordEnconder.encode("contrasena"));
+                int rol=random.nextInt(3);
+                if(rol==1){
+                    usuario.setRol(Rol.CAPITAN);
+                }else if(rol ==2){
+                    usuario.setRol(Rol.COMERCIANTE);
+                }else{
+                    usuario.setRol(Rol.PILOTO);
+                }
+                
+                usuario.setEquipo(equipo);
                 
                 if (!tiposNaves.isEmpty()) {
                     int randomIndexTipoNave = random.nextInt(tiposNaves.size());
@@ -108,13 +120,13 @@ public class DBInitializer implements CommandLineRunner {
                     }
                     
                     naveRepository.save(nave);
-                    jugador.setNave(nave);
+                    usuario.setNave(nave);
     
                     // Asignar productos a la nave
                     asignarProductosANave(nave);
                 }
         
-                jugadorRepository.save(jugador);
+                jugadorRepository.save(usuario);
             }
         }
     }

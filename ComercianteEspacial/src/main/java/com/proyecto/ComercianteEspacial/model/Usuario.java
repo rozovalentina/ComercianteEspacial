@@ -14,8 +14,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
@@ -34,17 +32,12 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private Rol rol;
 
-    @ManyToOne
-    @JoinColumn(name = "nave_id")
-    private Nave nave;
-
     public Usuario(){}
 
     public Usuario(String nombre, String password, Rol rol, Nave nave){
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
-        this.nave = nave;
     }
     
     // Getters y setters
@@ -78,14 +71,6 @@ public class Usuario implements UserDetails {
 
     public void setRol(Rol rol) {
         this.rol = rol;
-    }
-
-    public Nave getNave() {
-        return nave;
-    }
-
-    public void setNave(Nave nave) {
-        this.nave = nave;
     }
 
     @Override

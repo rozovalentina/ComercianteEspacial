@@ -17,6 +17,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public Jugador login(@RequestBody Jugador jugador) {
-        return jugadorService.authenticate(jugador.getNombre(), jugador.getContraseña());
+        return jugadorService.authenticate(jugador.getNombre(), jugador.getPassword());
     }
 }
