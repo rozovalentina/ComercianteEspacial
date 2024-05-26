@@ -2,13 +2,12 @@ package com.proyecto.ComercianteEspacial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.proyecto.ComercianteEspacial.model.TipoNave;
 import com.proyecto.ComercianteEspacial.service.TipoNaveService;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -20,7 +19,7 @@ public class TipoNaveController {
     private TipoNaveService tipoNaveService;
 
     @GetMapping("")
-    @Secured({"CAPITAN, PILOTO, COMERCIANTE"})
+    @PreAuthorize("hasAnyAuthority('CAPITAN', 'PILOTO', 'COMERCIANTE')")
     public List<TipoNave> mostrarTiposNaves() {
         return tipoNaveService.obtenerTodosLosTiposNaves();
     }

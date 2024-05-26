@@ -1,16 +1,16 @@
 package com.proyecto.ComercianteEspacial.dto;
 
-import com.proyecto.ComercianteEspacial.model.Rol;
+import com.proyecto.ComercianteEspacial.model.Role;
 
 public class JwtAuthenticationResponse {
     private String token;
     private String nombre;
-    private Rol rol;
+    private Role rol;
 
     public JwtAuthenticationResponse() {
     }
 
-    public JwtAuthenticationResponse(String token, String nombre, Rol rol) {
+    public JwtAuthenticationResponse(String token, String nombre, Role rol) {
         this.token = token;
         this.nombre = nombre;
         this.rol = rol;
@@ -32,11 +32,11 @@ public class JwtAuthenticationResponse {
         this.nombre = nombre;
     }
 
-    public Rol getRol() {
+    public Role getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(Role rol) {
         this.rol = rol;
     }
 }

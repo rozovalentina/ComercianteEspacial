@@ -24,17 +24,17 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Column(unique = true)
     private String nombre;
     @Column
     private String password;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Rol rol;
+    private Role rol;
 
     public Usuario(){}
 
-    public Usuario(String nombre, String password, Rol rol, Nave nave){
+    public Usuario(String nombre, String password, Role rol, Nave nave){
         this.nombre = nombre;
         this.password = password;
         this.rol = rol;
@@ -57,19 +57,15 @@ public class Usuario implements UserDetails {
         this.nombre = nombre;
     }
 
-    public String getpassword() {
-        return password;
-    }
-
     public void setpassword(String password) {
         this.password = password;
     }
 
-    public Rol getRol() {
+    public Role getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(Role rol) {
         this.rol = rol;
     }
 

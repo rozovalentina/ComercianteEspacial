@@ -47,7 +47,7 @@ public class DBInitializer implements CommandLineRunner {
 
     public void generarEstrellas() {
         Random random = new Random();
-        int totalEstrellas = 40000;
+        int totalEstrellas = 400;
         int totalPlanetas = totalEstrellas / 100; // 1% de estrellas con planetas
 
         for (int i = 0; i < totalEstrellas; i++) {
@@ -95,11 +95,11 @@ public class DBInitializer implements CommandLineRunner {
                 usuario.setpassword(passwordEnconder.encode("contrasena"));
                 int rol=random.nextInt(3);
                 if(rol==1){
-                    usuario.setRol(Rol.CAPITAN);
+                    usuario.setRol(Role.CAPITAN);
                 }else if(rol ==2){
-                    usuario.setRol(Rol.COMERCIANTE);
+                    usuario.setRol(Role.COMERCIANTE);
                 }else{
-                    usuario.setRol(Rol.PILOTO);
+                    usuario.setRol(Role.PILOTO);
                 }
                 
                 usuario.setEquipo(equipo);

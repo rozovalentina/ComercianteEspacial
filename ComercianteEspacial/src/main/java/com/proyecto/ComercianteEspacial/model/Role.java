@@ -1,6 +1,6 @@
 package com.proyecto.ComercianteEspacial.model;
 
-public enum Rol {
+public enum Role {
     PILOTO,
     COMERCIANTE,
     CAPITAN

@@ -1,17 +1,17 @@
 package com.proyecto.ComercianteEspacial.dto;
 
-import com.proyecto.ComercianteEspacial.model.Rol;
+import com.proyecto.ComercianteEspacial.model.Role;
 
 public class UserRegistrationDTO {
     private String nombre;
     private String password;
-    private Rol rol;
+    private Role rol;
     private Long idNave;
 
     public UserRegistrationDTO() {
     }
 
-    public UserRegistrationDTO(String nombre, String password, Rol rol, Long idnave) {
+    public UserRegistrationDTO(String nombre, String password, Role rol, Long idnave) {
         this.nombre=nombre;
         this.password = password;
         this.rol = rol;
@@ -28,11 +28,11 @@ public class UserRegistrationDTO {
         this.nombre = nombre;
     }
 
-    public Rol getRol() {
+    public Role getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(Role rol) {
         this.rol = rol;
     }
 
