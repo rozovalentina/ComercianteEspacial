@@ -1,6 +1,7 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import com.proyecto.ComercianteEspacial.model.TipoNave;
 import com.proyecto.ComercianteEspacial.service.TipoNaveService;
@@ -19,6 +20,7 @@ public class TipoNaveController {
     private TipoNaveService tipoNaveService;
 
     @GetMapping("")
+    @Secured({"CAPITAN, PILOTO, COMERCIANTE"})
     public List<TipoNave> mostrarTiposNaves() {
         return tipoNaveService.obtenerTodosLosTiposNaves();
     }

@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/travel")
+@RequestMapping("/viaje")
 public class SpaceTravelController {
 
     @Autowired
     private SpaceTravelService spaceTravelService;
 
-    @PostMapping("/initiate")
+    @PostMapping("/iniciar")
     public void initiateSpaceTravel(@RequestParam Long starId) {
         spaceTravelService.initiateSpaceTravel(starId);
     }
