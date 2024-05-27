@@ -111,7 +111,7 @@ public class DBInitializer implements CommandLineRunner {
                     nave.setNombre("Nave de Jugador " + (i * jugadoresPorEquipo + j));
                     nave.setCargaMaxima(100.0);
                     nave.setTipoNave(tipoNaveAleatorio);
-                    
+                    nave.setVelocidadMaxima(2000.00);
                     // Asignar una estrella aleatoria si la lista de estrellas no está vacía
                     if (!estrellas.isEmpty()) {
                         int randomIndexEstrella = random.nextInt(estrellas.size());
