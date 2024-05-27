@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -24,7 +27,12 @@ public class JugadorController {
             @RequestParam(defaultValue = "10") int size) {
         return jugadorService.obtenerTodosLosJugadores(page, size);
     }
-
+    @PreAuthorize("hasAnyAuthority('CAPITAN', 'PILOTO', 'COMERCIANTE')")
+    @GetMapping("/{nombre}")
+    public Jugador getJugadorPorNombre(@PathVariable String nombre) {
+        return jugadorService.authenticate(nombre, nombre);
+    }
+    
     @PostMapping("/guardar")
     public Jugador guardarJugador(@RequestBody Jugador jugador) {
         return jugadorService.guardarJugador(jugador);

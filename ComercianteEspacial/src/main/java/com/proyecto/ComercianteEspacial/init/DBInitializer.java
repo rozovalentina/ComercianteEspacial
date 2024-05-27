@@ -39,10 +39,10 @@ public class DBInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        generarEstrellas();
-        generarJugadores();
+        generarEstrellas();  
         generarTiposNaves();
         generarEspecificacionesProductos();
+        generarJugadores();
     }
 
     public void generarEstrellas() {
@@ -77,7 +77,7 @@ public class DBInitializer implements CommandLineRunner {
 
     public void generarJugadores() {
         int totalEquipos = 10;
-        int jugadoresPorEquipo = 10;
+        int jugadoresPorEquipo = 5;
     
         List<TipoNave> tiposNaves = tipoNaveRepository.findAll();
         List<Estrella> estrellas = estrellaRepository.findAll();
@@ -116,16 +116,15 @@ public class DBInitializer implements CommandLineRunner {
                     if (!estrellas.isEmpty()) {
                         int randomIndexEstrella = random.nextInt(estrellas.size());
                         Estrella estrellaAleatoria = estrellas.get(randomIndexEstrella);
+                        nave.setNaveX(estrellaAleatoria.getCoordenadaX());
+                        nave.setNaveY(estrellaAleatoria.getCoordenadaY());
+                        nave.setNaveZ(estrellaAleatoria.getCoordenadaZ());
                         nave.setEstrella(estrellaAleatoria);
+                        
                     }
-                    
+                    usuario.setNave(nave); 
                     naveRepository.save(nave);
-                    usuario.setNave(nave);
-    
-                    // Asignar productos a la nave
-                    asignarProductosANave(nave);
                 }
-        
                 jugadorRepository.save(usuario);
             }
         }
@@ -134,7 +133,7 @@ public class DBInitializer implements CommandLineRunner {
     
 
     public void generarEspecificacionesProductos() {
-        int totalEspecificaciones = 500;
+        int totalEspecificaciones = 50;
 
         for (int i = 0; i < totalEspecificaciones; i++) {
             Producto especificacion = new Producto("Producto " + i, Math.random());
@@ -224,7 +223,7 @@ public class DBInitializer implements CommandLineRunner {
         for (int i = 0; i < numProductos; i++) {
             int randomIndex = random.nextInt(productos.size());
             Producto producto = productos.get(randomIndex);
-            nave.agregarProducto(producto, 10.0); // Agrega 10 unidades del producto a la nave
+            nave.agregarProducto(producto); // Agrega 10 unidades del producto a la nave
             productoRepository.save(producto); // Guarda el producto en la base de datos
         }
     

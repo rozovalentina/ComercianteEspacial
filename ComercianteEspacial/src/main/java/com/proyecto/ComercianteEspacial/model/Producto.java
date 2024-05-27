@@ -18,19 +18,17 @@ public class Producto {
     private Double precioVenta; // Cambiado a camelCase
     private Double precioCompra; // Cambiado a camelCase
     private Double cantidad;
-
+    
+    @JsonIgnore
+    @ManyToOne // Agregar relación Many-to-One con Nave
+    private Nave nave;
+    
     public Producto(String nombre, double cantidad) {
         this.nombre = nombre;
         this.cantidad = cantidad;
     }
-
     public Producto() {
     }
-
-    @JsonIgnore
-    @ManyToOne // Agregar relación Many-to-One con Nave
-    private Nave nave;
-
     // Getters y setters
     public Long getId() {
         return id;

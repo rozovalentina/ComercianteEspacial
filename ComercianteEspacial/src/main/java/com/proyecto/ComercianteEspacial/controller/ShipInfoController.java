@@ -21,12 +21,14 @@ public class ShipInfoController {
     @Autowired
     private ShipInfoService shipInfoService;
 
-        @GetMapping("")
+    @GetMapping("")
     @PreAuthorize("hasAnyAuthority('CAPITAN', 'PILOTO', 'COMERCIANTE')")
     public List<Nave> mostrarNaves() {
         return shipInfoService.obtenerTodasLasNaves();
     }
+    
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyAuthority('CAPITAN', 'PILOTO', 'COMERCIANTE')")
     public Nave mostrarDetalleNave(@PathVariable Long id) {
         return shipInfoService.obtenerNavePorId(id);
     }

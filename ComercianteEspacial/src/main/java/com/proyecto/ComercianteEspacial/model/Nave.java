@@ -41,7 +41,7 @@ public class Nave {
     private Jugador jugador;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "nave", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nave", cascade = CascadeType.PERSIST)
     private List<Producto> productos = new ArrayList<>(); // Relación con los productos
 
     // Getters y setters
@@ -142,7 +142,7 @@ public class Nave {
     }
 
     // Método para agregar un producto a la lista de productos de la nave
-    public void agregarProducto(Producto producto, double cantidad) {
+    public void agregarProducto(Producto producto) {
         this.productos.add(producto);
     }
 }

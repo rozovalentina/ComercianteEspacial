@@ -7,10 +7,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Jugador extends Usuario{
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
     @ManyToMany
     @JoinTable(
             name = "jugador_estrella",
@@ -42,13 +38,6 @@ public class Jugador extends Usuario{
     }
 
     // Getters y setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     
 
