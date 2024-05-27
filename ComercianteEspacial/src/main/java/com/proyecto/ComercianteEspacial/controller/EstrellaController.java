@@ -1,9 +1,14 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import com.proyecto.ComercianteEspacial.model.Estrella;
+import com.proyecto.ComercianteEspacial.model.Planeta;
 import com.proyecto.ComercianteEspacial.service.EstrellaService;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -41,5 +46,11 @@ public class EstrellaController {
     @DeleteMapping("/{id}")
     public void eliminarEstrella(@PathVariable Long id) {
         estrellaService.eliminarEstrella(id);
+    }
+    
+    @GetMapping("/{id}/planetas")
+    @PreAuthorize("hasAnyAuthority('CAPITAN', 'PILOTO', 'COMERCIANTE')")
+    public List<Planeta> obtenerPlanetasDeEstrella(@PathVariable Long id) {
+        return estrellaService.obtenerTodosLosPlanetas(id);
     }
 }

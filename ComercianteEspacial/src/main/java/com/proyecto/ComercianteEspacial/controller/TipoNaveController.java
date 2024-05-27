@@ -1,13 +1,13 @@
 package com.proyecto.ComercianteEspacial.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.proyecto.ComercianteEspacial.model.TipoNave;
 import com.proyecto.ComercianteEspacial.service.TipoNaveService;
 
 import java.util.List;
-
 
 @RestController
 @CrossOrigin("http://localhost:4200")

@@ -6,6 +6,7 @@ import com.proyecto.ComercianteEspacial.service.ComerciarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class ComerciarController {
     private ComerciarService comercializarService;
 
     @GetMapping("/productos/{estrellaId}")
+    @PreAuthorize("hasAnyAuthority('COMERCIANTE')")
     public ResponseEntity<List<Producto>> obtenerProductosNavesEnEstrella(@PathVariable Long estrellaId) {
         System.out.println("Recibida solicitud para obtener productos de la estrella con ID: " + estrellaId);
         List<Producto> productos = comercializarService.obtenerProductosNavesEnEstrella(estrellaId);
