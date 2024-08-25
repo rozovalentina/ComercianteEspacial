@@ -1,1 +1,3 @@
 # ComercianteEspacial
+
+juego multijugador llamado “Comerciante Espacial”. Comerciante Espacial es un juego de estrategia y comercio ambientado en el año 31337, en que la humanidad ha colonizado muchos sistemas estelares. Un equipo de jugadores son la tripulación de una nave comerciante, la cual viaja de planeta en planeta, comprando y vendiendo bienes de diverso tipo. El objetivo del juego es ganar la mayor cantidad de dinero en un plazo determinado. Para ello, el sistema debe llevar registro del dinero que tiene el equipo, así como del tiempo transcurrido en los viajes realizados de un planeta a otro.
